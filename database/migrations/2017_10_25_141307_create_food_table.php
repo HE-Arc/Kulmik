@@ -21,6 +21,12 @@ class CreateFoodTable extends Migration
             $table->date('buy_date');
             $table->date('expiration_date');
             $table->timestamps();
+
+            //Foreign keys
+            $table->integer('cupboard_id')->unsigned();
+            $table->integer('category_id')->unsigned();
+            $table->foreign('cupboard_id')->references('id')->on('cupboard');
+            $table->foreign('category_id')->references('id')->on('category');
         });
     }
 
