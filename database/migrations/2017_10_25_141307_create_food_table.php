@@ -13,6 +13,8 @@ class CreateFoodTable extends Migration
      */
     public function up()
     {
+        Schema::disableForeignKeyConstraints();
+
         Schema::create('food', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
@@ -28,6 +30,7 @@ class CreateFoodTable extends Migration
             $table->foreign('cupboard_id')->references('id')->on('cupboard');
             $table->foreign('category_id')->references('id')->on('category');
         });
+        Schema::enableForeignKeyConstraints();
     }
 
     /**
