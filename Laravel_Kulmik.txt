@@ -1,0 +1,92 @@
+                        Kulmik
+-------------------------------------------------------------------------------------
+links :
+    https://www.youtube.com/channel/UCvnYUxK4wM-IGOFA2izmkGA
+-------------------------------------------------------------------------------------
+
+Application purpose:
+
+-------------------------------------------------------------------------------------
+Installation: 
+	- Laragon: Apache server, MySQL
+-------------------------------------------------------------------------------------
+	1. Project creation : open Laragon command line:
+		cd [path]
+		laravel new kulmik
+		
+		(can be done using powershell as well)
+
+    2. Configure database :
+		Go to database in Laragon, open 'database' then create a new one.
+		The new database's name is 'kulmik'
+
+    3. Migration
+		php artisan migrate
+		
+	4. Authentication
+		php artisan make:auth
+		
+	5. Create new tables
+		php artisan make:migration create_[name]_table
+		
+		
+-------------------------------------------------------------------------------------
+
+Directory structure : MVC - Model - View - Controller
+
+            http://some-page.com            computer screen
+            -----------------------------------------------------------
+                                 |             /\
+                                 \/            |
+                    model < - > controller -> view
+                    /\      |              |
+                    |       |              |
+                    \/      |              |
+                 database   |              |
+            -----------------------------------------------------------
+
+            Model :
+                - represent entities in a database
+                - help query the database and return the data
+            View :
+                - pages which will be displayed when the app is being accessed
+                - View Component is used for the UI of the app
+
+            Controller :
+                - handle user requests
+                - get required data from the models and pass them to the View
+                - are the intermediary between Model and View Components
+                  to process the business logic and incoming request
+
+App folders :
+
+    app             : meat of the application containing the core code.
+        Console         : contains all the custom Artisan commands: make:command
+        Exceptions      : contains the app exception handler, place custom exception here
+        Http            : contains all the controllers, middleware and requests
+        Providers       : contains all the service's providers for the app *
+    bootstrap       : contains bootstrap framework as well as config files
+                      and framework generated cache files (in Cache dir)
+    config          : contains all the app configuration files
+    database        : contains all db migration seeds. SQLlite db files can be stored here
+        migrations
+        seeds
+    public          : contains assets like images, js files and CSS
+    resources       : contains all view files, LESS or SASS files
+        assets
+        lang            : stores language files
+        views
+    routes          : contains all routes definitions for the app's. php is the file
+                      which receives all the requests to the app. We can redirect the
+                      requests to respective controller methods
+    storage         : contains Blade templates, session files, cache files, ..
+        app
+        framework
+        logs
+    tests           : contains all the test files
+    vendor          : contains all composer dependencies
+
+
+    * https://laravel.com/docs/5.4/providers
+
+-------------------------------------------------------------------------------------
