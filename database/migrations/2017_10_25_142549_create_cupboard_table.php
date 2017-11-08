@@ -30,6 +30,6 @@ class CreateCupboardTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('cupboard');
+        Schema::dropIfExists('cupboards');
     }
 }

@@ -1,21 +1,19 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     *
+     * Documentation link : https://laravel.com/docs/5.5/seeding
      * @return void
      */
     public function run()
     {
-        // $this->call(UsersTableSeeder::class);
-        /*DB::table('category')->insert(['name' => 'glucides']);
-        DB::table('category')->insert(['name' => 'légumes']);
-        DB::table('category')->insert(['name' => 'protéines']);
-        DB::table('category')->insert(['name' => '']);*/
+        $this->call([
+            CategoriesTableSeeder::class,
+            CupboardsTableSeeder::class,
+            FoodTableSeeder::class]);
     }
 }

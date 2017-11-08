@@ -93,7 +93,11 @@ Installation:
         CSRF - cross site request forgery
         https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
 
-
+   DATABASE MANAGEMENT :
+    php artisan migrate:fresh        -> drop+migrates tables
+    php artisan db:seed              -> populates db with seeds
+    php artisan migrate:fresh --seed -> does both
+    php artisan make:sseder []       -> creates seeder class
 
 -------------------------------------------------------------------------------------
 

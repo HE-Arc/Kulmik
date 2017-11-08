@@ -18,6 +18,9 @@ class CreateCategoryTable extends Migration
             $table->string('name')->unique();
             $table->text('description');
             $table->timestamps();
+
+            $table->integer('category_id')->nullable()->unsigned();
+            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 
@@ -28,6 +31,6 @@ class CreateCategoryTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('category');
+        Schema::dropIfExists('categories');
     }
 }
