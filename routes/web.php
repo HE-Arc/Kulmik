@@ -20,13 +20,13 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-//  Containes
+//  Containers
 Route::get('/containers', 'CupboardController@index');
 //Route::get('/containers/{container}', 'ContainerController@show');
 
 //  Food
 Route::get('/food', 'FoodController@index');
-Route::get('/food/{food}', 'FoodController@show');
+//Route::get('/food/{food}', 'FoodController@show');
 
 //  Categories
 //Route::get('/category', 'CategoryController@index');

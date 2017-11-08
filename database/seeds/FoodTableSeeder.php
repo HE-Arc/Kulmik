@@ -7,7 +7,8 @@ class FoodTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     * link : https://laracasts.com/discuss/channels/laravel/how-to-seed-timestamps-field
+     * links : https://laracasts.com/discuss/channels/laravel/how-to-seed-timestamps-field
+     *         https://stackoverflow.com/questions/41807853/how-to-seed-a-date-field-in-laravel-5-3
      * @return void
      */
     public function run()
