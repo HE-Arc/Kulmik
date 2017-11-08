@@ -15,6 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+//Authentification
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
@@ -22,5 +23,3 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/category', 'CategoryController@show');
 Route::get('/containers', 'CupboardController@index');
 //Route::get('/containers/{container}', 'ContainerController@show');
-
-
