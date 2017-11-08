@@ -1,3 +1,6 @@
+<!--https://laracasts.com/discuss/channels/general-discussion/add-fixed-menu-bar-to-all-the-views-->
+<!--https://stackoverflow.com/questions/29837555/setting-bootstrap-navbar-active-class-in-laravel-5-->
+
 <nav class="navbar navbar-default navbar-static-top">
     <div class="container">
         <div class="navbar-header">
@@ -12,14 +15,31 @@
 
             <!-- Branding Image -->
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Laravel') }}
+                {{ config('app.name', 'Kulmik') }}
             </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
             <!-- Left Side Of Navbar -->
             <ul class="nav navbar-nav">
-                &nbsp;
+                <!--{{ Request::is('/') ? 'active' : '' }} make the button active so the user see where he is-->
+                <!--{{ url('about') }} dynamic link with routes-->
+                <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ url('/') }}">Home</a></li>
+                <li class="{{ Request::is('containers') ? 'active' : '' }}"><a href="{{ url('containers') }}">Containers</a></li>
+                <li class="{{ Request::is('food') ? 'active' : '' }}"><a href="{{ url('food') }}">Food</a></li>
+                <li class="{{ Request::is('recipes') ? 'active' : '' }}"><a href="{{ url('recipes') }}">Recipes</a></li>
+                <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About<span class="caret"></span></a>
+                  <ul class="dropdown-menu" role="menu">
+                    <li class="{{ Request::is('about') ? 'active' : '' }}"><a href="{{ url('about') }}">About us</a></li>
+                    <li class="{{ Request::is('contact') ? 'active' : '' }}"><a href="{{ url('contact') }}">Contact</a></li>
+                    <!-- More examples
+                    <li class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    -->
+                  </ul>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->
