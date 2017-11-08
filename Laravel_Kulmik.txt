@@ -7,13 +7,13 @@ links :
 Application purpose:
 
 -------------------------------------------------------------------------------------
-Installation: 
+Installation:
 	- Laragon: Apache server, MySQL
 -------------------------------------------------------------------------------------
 	1. Project creation : open Laragon command line:
 		cd [path]
 		laravel new kulmik
-		
+
 		(can be done using powershell as well)
 
     2. Configure database :
@@ -24,14 +24,77 @@ Installation:
 		php artisan migrate
 	-if table already exists use:
 		php artisant migrate::rollback
-		
+		php artisan migrate:reset 	//rollback
+		php artisan migrate:refresh //rollback and remigrate
+		composer dump-autoload
+
 	4. Authentication
 		php artisan make:auth
-		
+
 	5. Create new tables
 		php artisan make:migration create_[name]_table
-		
-		
+
+	6. Create a model using Eloquent
+		php artisan make:model Task
+		php artisan tinker -> open the shell : interaction with the App
+			>>> App\Task::all() => shows all
+			>>> App\Task::where('d', '>', 2)->get();
+			>>> App\Task::pluck('body'); //returns body of all task
+			>>> App\Task::pluck('body')->first();
+			>>> App\Task::find(1); = App\Task::first();
+			>>> $task->isComplete(); => false
+
+	6.1. Create a model + a table
+		php artisan make:model Task -m
+
+	7. Populate a table using tinker
+		$task = new App\Task;
+		$task->body = 'go to the store';
+		$task->complete = false; => better : in migration => $table->boolean('complete')->default(false);
+		$task->save():
+
+	8. Generate a Controller
+	    php artisan make:controller [insert name]Controller
+
+	9. Route Model Binding
+	    //web.php
+	    Route::get('/tasks/{task}', 'TasksController@show');
+	    //TasksController.php
+        public function show(Task $task){ return view('tasks.show', compact('task')); }
+            -> does the same as Task::find(wildcard)
+
+   10. Layouts and Structure
+       Following method prevent from having to modify every <link href="" ...> one by one
+       -> create a file here : resources/views/layout.blade.php
+        html wrapper which will nest every individual views
+        -> one face for the app, the content will change but that's it
+        <body>
+            @yield('content')
+        </body>
+
+      -> What we need in web.php :
+        - Controller => PostsController
+        - Eloquent   => Post
+        - migration  => create_posts_table
+        php artisan:model Post -mc //m:migration, c:controller
+                                -r //r:resourceful
+        -> getbootstrap
+        -> then :
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+   11. Data REST
+        GET     /posts
+        GET     /posts/create       //creation
+        POST    /posts
+        GET     /posts/{id}/edit    //edition
+        PATCH   /posts/{id}         //modification
+        DELETE  /posts/{id}         //deletion
+
+        CSRF - cross site request forgery
+        https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
+
+
+
 -------------------------------------------------------------------------------------
 
 Directory structure : MVC - Model - View - Controller
