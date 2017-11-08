@@ -25,7 +25,8 @@ Route::get('/containers', 'CupboardController@index');
 //Route::get('/containers/{container}', 'ContainerController@show');
 
 //  Food
-//TODO controller for food and pages
+Route::get('/food', 'FoodController@index');
+Route::get('/food/{food}', 'FoodController@show');
 
 //  Categories
 //Route::get('/category', 'CategoryController@index');
@@ -34,7 +35,7 @@ Route::get('/category', 'CategoryController@show');
 //  Recipes
 //TODO 2nd iteration, use controller instead
 Route::get('/recipes', function () {
-    return view('recipes');
+    return redirect('/');
 });
 
 //  About
