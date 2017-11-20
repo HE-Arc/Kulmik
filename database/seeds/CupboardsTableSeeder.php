@@ -11,15 +11,32 @@ class CupboardsTableSeeder extends Seeder
      */
     public function run()
     {
-        //cupboard 1    -
+        //region 1 PERSON
         DB::table('cupboards')->insert([
-            'name' => 'single man\'s fridge',
-            'description' => 'this is a sample fridge',
+            'name' => 'One person\'s fridge',
+            'description' => 'I am a sample fridge containing some basic aliments.',
             'temperature' => 5,
             'volume' => 200
             ]);
-        //cupboard 2
+        //endregion 1 PERSON
 
-        // ...
+        //region COUPLE
+        DB::table('cupboards')->insert([
+            'name' => 'Couple\'s fridge',
+            'description' => 'I am a sample fridge containing some basic aliments.',
+            'temperature' => 5,
+            'volume' => 350
+        ]);
+        //endregion COUPLE
+
+        //region FAMILY OF 4
+        DB::table('cupboards')->insert([
+            'name' => 'Family of 4 fridge',
+            'description' => 'I am a sample fridge containing some basic aliments.',
+            'temperature' => 5,
+            'volume' => 400
+        ]);
+        //endregion FAMILY OF 4
+
     }
 }
