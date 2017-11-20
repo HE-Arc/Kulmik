@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFoodTable extends Migration
+class CreateAlimentsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,7 +15,7 @@ class CreateFoodTable extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('food', function (Blueprint $table) {
+        Schema::create('aliments', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->integer('weight');
@@ -40,6 +40,6 @@ class CreateFoodTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('food');
+        Schema::dropIfExists('aliments');
     }
 }

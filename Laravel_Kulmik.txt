@@ -97,7 +97,7 @@ Installation:
     php artisan migrate:fresh        -> drop+migrates tables
     php artisan db:seed              -> populates db with seeds
     php artisan migrate:fresh --seed -> does both
-    php artisan make:sseder []       -> creates seeder class
+    php artisan make:seeder []       -> creates seeder class
 
 -------------------------------------------------------------------------------------
 

@@ -16,7 +16,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-//  Authentification
+//  Authentication
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
@@ -24,9 +24,9 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/containers', 'CupboardController@index');
 //Route::get('/containers/{container}', 'ContainerController@show');
 
-//  Food
-Route::get('/food', 'FoodController@index');
-//Route::get('/food/{food}', 'FoodController@show');
+//  Aliment
+Route::get('/aliments', 'AlimentController@index');
+//Route::get('/aliments/{aliments}', 'AlimentController@show');
 
 //  Categories
 //Route::get('/category', 'CategoryController@index');

@@ -3,17 +3,16 @@
 use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 
-class FoodTableSeeder extends Seeder
+class AlimentsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
-     * links : https://laracasts.com/discuss/channels/laravel/how-to-seed-timestamps-field
-     *         https://stackoverflow.com/questions/41807853/how-to-seed-a-date-field-in-laravel-5-3
+     *
      * @return void
      */
-    public function run()
+        public function run()
     {
-        DB::table('food')->insert([
+        DB::table('aliments')->insert([
             'name' => 'paquet de chips',
             'weight' => 200,
             'quantity' => 2,    //'Y-m-d H:i:s'

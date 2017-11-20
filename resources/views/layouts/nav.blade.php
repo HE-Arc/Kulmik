@@ -26,7 +26,7 @@
                 <!--{{ url('about') }} dynamic link with routes-->
                 <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ url('/') }}">Home</a></li>
                 <li class="{{ Request::is('containers') ? 'active' : '' }}"><a href="{{ url('containers') }}">Containers</a></li>
-                <li class="{{ Request::is('food') ? 'active' : '' }}"><a href="{{ url('food') }}">Food</a></li>
+                <li class="{{ Request::is('aliments') ? 'active' : '' }}"><a href="{{ url('aliments') }}">Aliments</a></li>
                 <li class="{{ Request::is('recipes') ? 'active' : '' }}"><a href="{{ url('recipes') }}">Recipes</a></li>
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About<span class="caret"></span></a>

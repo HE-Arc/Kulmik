@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call([
             CategoriesTableSeeder::class,
             CupboardsTableSeeder::class,
-            FoodTableSeeder::class]);
+            AlimentsTableSeeder::class]);
     }
 }
