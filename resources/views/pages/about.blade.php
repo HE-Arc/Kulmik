@@ -2,6 +2,8 @@
 
 @section('content')
   <h1>About</h1>
-  <p>Présentation : Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-  <p>Lien entreprise: <a href="https://www.he-arc.ch/">HE-Arc</a></p>
+  <p>We are two developers working on this project, Julia Németh and Kevin Vulliemin, currently studying
+    @ University of Applied Sciences and Arts of Western Switzerland (HES-SO), more precisely in Neuchâtel @ HE-ARC.
+  </p>
+  <p>Official link: <a href="https://www.he-arc.ch/">HE-Arc</a></p>
 @endsection
