@@ -11,7 +11,7 @@ class AlimentController extends Controller
   public function index(){
 
       $aliments = Aliment::all();
-      $categories = Category::all();
+      $categories = Category::has('aliments')->get();
       return view('pages.aliments.index', compact('aliments', 'categories'));
   }
 
