@@ -26,7 +26,7 @@ Route::get('/containers', 'CupboardController@index');
 
 //  Aliment
 Route::get('/aliments', 'AlimentController@index');
-//Route::get('/aliments/{aliments}', 'AlimentController@show');
+Route::get('/aliments/{aliments}', 'AlimentController@show')->where('id', '[0-9]+');
 
 //  Categories
 //Route::get('/category', 'CategoryController@index');
