@@ -15,6 +15,7 @@ class AlimentsTableSeeder extends Seeder
         public function run()
     {
 
+        //region CONTAINER 1
         DB::table('aliments')->insert([
             'name' => 'Mustard',
             'weight' => 200,
@@ -29,7 +30,7 @@ class AlimentsTableSeeder extends Seeder
             'weight' => 1000,
             'quantity' => 1,    //'Y-m-d H:i:s'
             'buy_date'  => Carbon::parse('2017-11-08'),
-            'expiration_date' => Carbon::parse('2018-11-08'),
+            'expiration_date' => Carbon::parse('2017-12-08'),
             'cupboard_id' => 1,
             'category_id' => 9]);
 
@@ -41,5 +42,6 @@ class AlimentsTableSeeder extends Seeder
             'expiration_date' => Carbon::parse('2018-11-08'),
             'cupboard_id' => 1,
             'category_id' => 3]);
+        //endregion CONTAINER 1
     }
 }

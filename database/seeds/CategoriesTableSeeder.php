@@ -14,51 +14,68 @@ class CategoriesTableSeeder extends Seeder
     {
         //region BASIC FOOD
         DB::table('categories')->insert([
-            'name' => 'glucides',
-            'description' => 'sucres et produits sucrés',
+            'name' => 'carbohydrates',
+            'description' => 'bread, cereals, rice, pasta, grains',
             'category_id' => null]);
 
         DB::table('categories')->insert([
-            'name' => 'lipides',
-            'description' => 'matière grasse',
+            'name' => 'vegetables',
+            'description' => 'carrot, broccoli, salad',
             'category_id' => null]);
 
         DB::table('categories')->insert([
-            'name' => 'protéines',
-            'description' => 'viandes, poissons, oeufs, alternatives',
+            'name' => 'fruits',
+            'description' => 'orange, banana, apple',
             'category_id' => null]);
 
         DB::table('categories')->insert([
-            'name' => 'légumes et fruits',
-            'description' => '',
+            'name' => 'dairy products',
+            'description' => 'milk, cheese, yogurt',
             'category_id' => null]);
 
         DB::table('categories')->insert([
-            'name' => 'céréales et dérivés',
-            'description' => 'pain, pâtes, patates',
+            'name' => 'meat and alternatives',
+            'description' => 'meat, fish, eggs, nuts, tofu',
+            'category_id' => null]);
+
+        DB::table('categories')->insert([
+            'name' => 'fats and oils',
+            'description' => 'sunflower oil, coco butter',
+            'category_id' => null]);
+
+        DB::table('categories')->insert([
+            'name' => 'sweets',
+            'description' => 'chocolate, bonbons, sugar',
+            'category_id' => null]);
+
+        DB::table('categories')->insert([
+            'name' => 'condiments and seasoning',
+            'description' => 'salt, pepper, paprika',
             'category_id' => null]);
         //endregion BASIC FOOD
 
         //region DRINKS
         DB::table('categories')->insert([
-            'name' => 'boissons',
-            'description' => '',
+            'name' => 'drinks',
+            'description' => 'water, tea',
             'category_id' => null]);
 
+        //region SUB CATEGORIES
         DB::table('categories')->insert([
-            'name' => 'alcool',
-            'description' => '',
+            'name' => 'alcohol',
+            'description' => 'beer, wine, liquor',
             'category_id' => 6]);
 
         DB::table('categories')->insert([
-            'name' => 'sucrées',
-            'description' => '',
+            'name' => 'sweet beverage',
+            'description' => 'lemonade',
             'category_id' => 6]);
 
         DB::table('categories')->insert([
-            'name' => 'jus',
-            'description' => '',
+            'name' => 'juice',
+            'description' => 'orange juice, tomato juice',
             'category_id' => 6]);
+        //endregion SUB CATEGORIES
         //endregion DRINKS
 
     }

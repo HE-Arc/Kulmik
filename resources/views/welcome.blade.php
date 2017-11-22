@@ -31,4 +31,9 @@
 
   <!--TODO: Aliments grouped by expiration date with a warning note -->
 
+  @include('expired_food_list')
+  <div class="container">
+      @yield('expired_food')
+  </div>
+
 @endsection
