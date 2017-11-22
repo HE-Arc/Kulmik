@@ -2,10 +2,9 @@
 
 @section('content')
   <h1>Contact</h1>
-  <p>Feel free to mail us!
-    <br/><br/>
-    <a href="mailto:julia.nemeth@he-arc.ch?Subject=Hello%20again" target="_top">julia.nemeth@he-arc.ch</a>
-    <br/>
-    <a href="mailto:kevin.vulliemin.he-arc.ch?Subject=Hello%20again" target="_top">kevin.vulliemin.he-arc.ch</a>
-  </p>
+  <p>Feel free to mail us!</p>
+  <ul>
+    <li><a href="mailto:julia.nemeth@he-arc.ch">julia.nemeth@he-arc.ch</a></li>
+    <li><a href="mailto:kevin.vulliemin.he-arc.ch">kevin.vulliemin.he-arc.ch</a></li>
+  </ul>
 @endsection
