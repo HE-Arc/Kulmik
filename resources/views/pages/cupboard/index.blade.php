@@ -1,7 +1,10 @@
 @extends('layouts.master')
 
 @section('content')
-    <h1>Fridges list</h1>
+    <div class="row">
+      <h1>Fridges list</h1>
+      <button class="btn btn-xs btn-info">Add a container</button>
+    </div>
     @foreach ($cupboards as $cupboard)
         <h2>{{ $cupboard->name }}</h2>
         <p>{{ $cupboard->description }}<br/>
