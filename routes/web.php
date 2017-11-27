@@ -24,9 +24,8 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/containers', 'CupboardController@index');
 //Route::get('/containers/{container}', 'ContainerController@show');
 
-//  Aliment
-Route::get('/aliments', 'AlimentController@index');
-Route::get('/aliments/{aliments}', 'AlimentController@show')->where('id', '[0-9]+');
+//  Aliment, Create all crud routes
+Route::resource('aliments', 'AlimentController');
 
 //  Categories
 //Route::get('/category', 'CategoryController@index');
