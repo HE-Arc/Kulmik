@@ -23,12 +23,7 @@
                         <div class="col-sm-2"><b>quantity: </b>{{ $aliment->quantity}}</div>
                         <div class="col-sm-2"><b>bought on: </b>{{ $aliment->buy_date}}</div>
                         <div class="col-sm-2"><b>best until: </b>{{ $aliment->expiration_date}}</div>
-<<<<<<< HEAD
                         <div class="col-sm-1"><a href="{{ route('aliments.show', $aliment) }}" class="btn btn-xs btn-info">Edit</a></div>
-=======
-
-                        <div class="col-sm-1"><a href="{{ action('AlimentController@show', ['id' => $aliment->id]) }}" class="btn btn-xs btn-info">Edit</a></div
->>>>>>> 1e137600fd5f9768fcd271ca46277eb2df985447
                         <div class="col-sm-1"><button class="btn btn-xs btn-info">Delete</button></div>
                     </div>
                     @endif
