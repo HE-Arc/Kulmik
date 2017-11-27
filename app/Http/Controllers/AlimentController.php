@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Aliment;
 use App\Category;
+use App\Cupboard;
 use Illuminate\Http\Request;
 
 class AlimentController extends Controller
@@ -18,7 +19,9 @@ class AlimentController extends Controller
   //Show the add form
   public function create()
   {
-    return view('pages.aliments.create');
+    $categories = Category::pluck('name', 'id');
+    $cupboards = Cupboard::pluck('name', 'id');
+    return view('pages.aliments.create', compact('categories', 'cupboards'));
   }
 
   //Store an added resource
@@ -30,7 +33,7 @@ class AlimentController extends Controller
       ]);
 
       Aliment::create($request->all());
-      return redirect()->route('pages.aliments.index')->with('success', 'Aliment added successfully');
+      return redirect()->route('aliments.index')->with('success', 'Aliment added successfully');
   }
 
   //Display specified resource
@@ -44,23 +47,28 @@ class AlimentController extends Controller
   public function edit($id)
   {
       $aliment = Aliment::findOrFail($id);
-      return view('pages.aliments.edit', compact('aliment'));
+      $categories = Category::pluck('name', 'id');
+      $cupboards = Cupboard::pluck('name', 'id');
+      return view('pages.aliments.edit', compact('aliment', 'categories', 'cupboards'));
   }
 
-  public function update(Request $request, $id)
+  public function update($id, Request $request)
   {
+      //dd($request->all());
       //TODO more required
       $this->validate($request, [
           'name' => 'required',
       ]);
 
-      Aliment::find($id)->update($request->all());
-      return redirect()->route('pages.aliments.index')->with('success', 'Aliment updated successfully');
+      $aliment = Aliment::find($id);
+      $aliment->cupboard_id = $request->cupboard_id;
+      $aliment->update($request->all());
+      return redirect()->route('aliments.index')->with('success', 'Aliment updated successfully');
   }
 
   public function destroy($id)
   {
       Aliment::find($id)->delete();
-      return redirect()->route('pages.aliments.index')->with('success', 'Aliment deleted successfully');
+      return redirect()->route('aliments.index')->with('success', 'Aliment deleted successfully');
   }
 }

@@ -8,7 +8,7 @@ use Carbon\Carbon;
 class Aliment extends Model
 {
   protected $fillable = [
-      'name', 'weight', 'quantity', 'buy_date', 'expiration_date',
+      'name', 'weight', 'quantity', 'buy_date', 'expiration_date', 'cupboard_id', 'category_id'
   ];
 
   public function category()
