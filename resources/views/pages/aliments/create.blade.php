@@ -24,8 +24,6 @@
     </div>
     @endif
 
-    <h1><?php var_dump($default) ?></h1>
-
     {!! Form::open(array('route' => 'aliments.store', 'method'=>'POST')) !!}
         <div class="form-group">
             {!! Form::label('name', 'Name') !!}
