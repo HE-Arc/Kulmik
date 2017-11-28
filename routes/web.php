@@ -25,7 +25,8 @@ Route::get('/containers', 'CupboardController@index');
 //Route::get('/containers/{container}', 'ContainerController@show');
 
 //  Aliment, Create all crud routes
-Route::resource('aliments', 'AlimentController');
+Route::get('aliments/create', 'AlimentController@create')->name('aliments.create');
+Route::resource('aliments', 'AlimentController', ['except' => ['create']]);
 
 //  Categories
 //Route::get('/category', 'CategoryController@index');

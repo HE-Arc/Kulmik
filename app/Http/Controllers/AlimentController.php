@@ -17,11 +17,11 @@ class AlimentController extends Controller
   }
 
   //Show the add form
-  public function create()
+  public function create($default=null)
   {
     $categories = Category::pluck('name', 'id');
     $cupboards = Cupboard::pluck('name', 'id');
-    return view('pages.aliments.create', compact('categories', 'cupboards'));
+    return view('pages.aliments.create', compact('categories', 'cupboards', 'default'));
   }
 
   //Store an added resource
