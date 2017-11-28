@@ -3,10 +3,20 @@
 @section('content')
     <div class="row">
       <h1>Fridges list</h1>
-      <button class="btn btn-xs btn-info">Add a container</button>
+      Do you wan't to add a cupboard : <a href="{{ route('containers.create') }}" class="btn btn-xs btn-primary">Add a container</a>
     </div>
     @foreach ($cupboards as $cupboard)
-        <h2>{{ $cupboard->name }}</h2>
+        <h2>
+            <b>{{ ucfirst($cupboard->name) }}</b>
+            <div class="btn-group">
+                <a href="{{ route('aliments.create', ['cupboard_id' => $cupboard->id]) }}" class="btn btn-xs btn-primary">Add</a>
+                <a href="{{ route('containers.edit', $cupboard) }}" class="btn btn-xs btn-warning">Edit</a>
+                {!! Form::open(['method' => 'DELETE', 'url' => route('containers.destroy', $cupboard->id), 'style'=>'display:inline', 'onsubmit' => 'return ConfirmDelete()']) !!}
+                  <button class="btn btn-xs btn-danger">Delete</button>
+                {!! Form::close() !!}
+                <!--<a href="{{ route('containers.destroy', $cupboard->id) }}" class="btn btn-xs btn-danger">Delete</a>-->
+            </div>
+        </h2>
         <p>{{ $cupboard->description }}<br/>
             <b>volume: </b>{{$cupboard->volume}}<br/>
             <b>temperature: </b>{{$cupboard->temperature}}
@@ -17,7 +27,7 @@
 
                 @if($aliment->cupboard_id == $cupboard->id)
                     @if($aliment->category_id == $category->id)
-                        <h3>{{$category->name}}</h3>
+                        <h3>{{ ucfirst($category->name) }}</h3>
                         <ul>
                             <div class="row" id={{$category->name}}>
                                 <div class="col-sm-2">{{ $aliment->name }}</div>
@@ -38,5 +48,7 @@
                 @endif
             @endforeach
         @endforeach
+
+        <hr>
     @endforeach
 @endsection

@@ -20,11 +20,10 @@ Route::get('/', function () {
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
-//  Containers
-Route::get('/containers', 'CupboardController@index');
-//Route::get('/containers/{container}', 'ContainerController@show');
+//  Containers, Create all crud routes
+Route::resource('containers', 'CupboardController');
 
-//  Aliment, Create all crud routes
+//  Aliment, Create all crud routes except 'create'
 Route::get('aliments/create', 'AlimentController@create')->name('aliments.create');
 Route::resource('aliments', 'AlimentController', ['except' => ['create']]);
 

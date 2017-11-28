@@ -24,5 +24,12 @@
     @include('layouts.footer')
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        function ConfirmDelete()
+        {
+          return confirm("Do you want to delete this item?");
+        }
+    </script>
+    @yield('script')
 </body>
 </html>
