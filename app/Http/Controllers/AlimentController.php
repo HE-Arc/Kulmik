@@ -6,6 +6,9 @@ use App\Aliment;
 use App\Category;
 use App\Cupboard;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
+//http://carbon.nesbot.com/docs/
 
 class AlimentController extends Controller
 {
@@ -15,6 +18,32 @@ class AlimentController extends Controller
       $categories = Category::has('aliments')->get();
       return view('pages.aliments.index', compact('aliments', 'categories'));
   }
+
+  public function expiredFood(){
+
+      //region const
+      $d1 = Carbon::today()->startOfDay();
+      $d2 = Carbon::today()->endOfDay();
+
+      $tomorrow = Carbon::tomorrow()->endOfDay();
+
+
+      $thisWeek = Carbon::today()->addWeek(1);
+      //endregion const
+
+      $expired = Aliment::all()->where('expiration_date', '<=', $tomorrow);  //future
+
+      $today = Aliment::all()->where('expiration_date', '>=', $d1)       //past
+                                ->where('expiration_date', '<', $d2);   //future
+
+      $expiresThisWeek = Aliment::all()
+          ->where('expiration_date', '>=', $d2)         //'past'
+          ->where('expiration_date', '<', $thisWeek);   //future
+
+      return view('welcome', compact('expired', 'today', 'expiresThisWeek',
+          'd1', 'd2', 'tomorrow', 'thisWeek'));
+  }
+
 
   //Show the add form
   public function create($default=null)

@@ -12,9 +12,7 @@
 */
 
 //  Home
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'AlimentController@expiredFood');
 
 //  Authentication
 Auth::routes();

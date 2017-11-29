@@ -21,7 +21,7 @@ class AlimentsTableSeeder extends Seeder
             'weight' => 200,
             'quantity' => 1,    //'Y-m-d H:i:s'
             'buy_date'  => Carbon::parse('2017-11-08'),
-            'expiration_date' => Carbon::parse('2017-11-30'),
+            'expiration_date' => Carbon::parse('2017-12-01'),
             'cupboard_id' => 1,
             'category_id' => 2]);
 
@@ -30,7 +30,7 @@ class AlimentsTableSeeder extends Seeder
             'weight' => 1000,
             'quantity' => 1,    //'Y-m-d H:i:s'
             'buy_date'  => Carbon::parse('2017-11-08'),
-            'expiration_date' => Carbon::parse('2017-11-24'),
+            'expiration_date' => Carbon::parse('2017-11-29'),
             'cupboard_id' => 1,
             'category_id' => 9]);
 

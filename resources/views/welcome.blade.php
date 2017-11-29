@@ -31,7 +31,7 @@
 
   <!--TODO: Aliments grouped by expiration date with a warning note -->
 
-  @include('expired_food_list')
+  @include('expired_food_list', compact('aliments'))
   <div class="container">
       @yield('expired_food')
   </div>

@@ -1,69 +1,47 @@
-@php
-
-    $aliments = \App\Aliment::all();
-
-@endphp
-
-
 @section('expired_food')
 
-        @foreach($aliments as $aliment)
-            @if($aliment->hasExpired("expired") != null)
-                <h3>Has expired</h3>
-                <div class="row">
-                    <div class="col-sm-2">{{ $aliment->name }}</div>
-                    @if($aliment->description != "")
-                        <div class="col-sm-2">{{ $aliment->description}}</div>
-                    @endif
-                </div>
-            @endif
-        @endforeach
+    {{$d1}}
+    {{$d2}}
+    {{$tomorrow}}
+    {{$thisWeek}}
 
-        @foreach($aliments as $aliment)
-            @if($aliment->hasExpired("today") != null)
-                <h3>Expires today</h3>
-                <div class="row">
-                    <div class="col-sm-2">{{ $aliment->name }}</div>
-                    @if($aliment->description != "")
-                        <div class="col-sm-2">{{ $aliment->description}}</div>
-                    @endif
-                </div>
+    @if(count($expired) > 0)
+        <h4>Expired</h4>
+    @endif
+    @foreach($expired as $aliment)
+        <div class="row">
+            <div class="col-sm-2">{{ $aliment->name }}</div>
+            @if($aliment->description != "")
+                <div class="col-sm-2">{{ $aliment->description}}</div>
             @endif
-        @endforeach
+            <div class="col-sm-2">{{ $aliment->expiration_date }}</div>
+        </div>
+    @endforeach
 
-        @foreach($aliments as $aliment)
-            @if($aliment->hasExpired("stage3") != null)
-                <h3>Expires in 2-1 days</h3>
-                <div class="row">
-                    <div class="col-sm-2">{{ $aliment->name }}</div>
-                    @if($aliment->description != "")
-                        <div class="col-sm-2">{{ $aliment->description}}</div>
-                    @endif
-                </div>
+    @if(count($today) > 0)
+        <h4>Today</h4>
+    @endif
+    @foreach($today as $aliment)
+        <div class="row">
+            <div class="col-sm-2">{{ $aliment->name }}</div>
+            @if($aliment->description != "")
+                <div class="col-sm-2">{{ $aliment->description}}</div>
             @endif
-        @endforeach
+            <div class="col-sm-2">{{ $aliment->expiration_date }}</div>
+        </div>
+    @endforeach
 
-        @foreach($aliments as $aliment)
-            @if($aliment->hasExpired("stage2") != null)
-                <h3>Expires in 3-5 days</h3>
-                <div class="row">
-                    <div class="col-sm-2">{{ $aliment->name }}</div>
-                    @if($aliment->description != "")
-                        <div class="col-sm-2">{{ $aliment->description}}</div>
-                    @endif
-                </div>
+    @if(count($expiresThisWeek) > 0)
+        <h4>Expires this week</h4>
+    @endif
+    @foreach($expiresThisWeek as $aliment)
+        <div class="row">
+            <div class="col-sm-2">{{ $aliment->name }}</div>
+            @if($aliment->description != "")
+                <div class="col-sm-2">{{ $aliment->description}}</div>
             @endif
-        @endforeach
+            <div class="col-sm-2">{{ $aliment->expiration_date }}</div>
+        </div>
+    @endforeach
 
-        @foreach($aliments as $aliment)
-            @if($aliment->hasExpired("stage1") != null)
-                <h3>Expires in 6-10 days</h3>
-                <div class="row">
-                    <div class="col-sm-2">{{ $aliment->name }}</div>
-                    @if($aliment->description != "")
-                        <div class="col-sm-2">{{ $aliment->description}}</div>
-                    @endif
-                </div>
-            @endif
-        @endforeach
 @endsection
