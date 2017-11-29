@@ -6,14 +6,20 @@ use App\Aliment;
 use App\Category;
 use App\Cupboard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CupboardController extends Controller
 {
     public function index(){
+        //In middleware?
+        $user = 0;  //It's the non-logged user
+        if( Auth::check() ){
+            $user = Auth::user()->id;
+        }
 
-        $cupboards = Cupboard::all()->sortBy('id');
+        $cupboards = Cupboard::where('user_id', $user)->get();
+        $aliments = !$cupboards->isEmpty() ? Aliment::where('cupboard_id', $cupboards->pluck('id'))->get()->sortBy('expiration_date') : [];
         $categories = Category::all()->sortBy('id');
-        $aliments = Aliment::all()->sortBy('expiration_date');
 
         return view('pages.cupboard.index', compact('cupboards', 'categories', 'aliments'));
     }
@@ -32,7 +38,11 @@ class CupboardController extends Controller
             'name' => 'required',
         ]);
 
-        Cupboard::create($request->all());
+        $user = 0;
+        if(Auth::check()){
+          $user = Auth::user()->id;
+        }
+        Cupboard::create($request->all() + ['user_id' => $user]);
         return redirect()->route('containers.index')->with('success', 'Cupboard added successfully');
     }
 

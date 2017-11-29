@@ -11,6 +11,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        //Just a user for test
+        DB::table('users')->insert([
+            'name' => 'Toto',
+            'email' => 'toto@he-arc.ch',
+            'password' => bcrypt('secret')
+            ]);
+
         $this->call([
             CategoriesTableSeeder::class,
             CupboardsTableSeeder::class,

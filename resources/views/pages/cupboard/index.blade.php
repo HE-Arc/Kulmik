@@ -53,7 +53,6 @@
                 @endif
             @endforeach
         @endforeach
-
         <hr>
     @endforeach
 @endsection

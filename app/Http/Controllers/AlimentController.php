@@ -6,6 +6,7 @@ use App\Aliment;
 use App\Category;
 use App\Cupboard;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 //http://carbon.nesbot.com/docs/
@@ -14,7 +15,14 @@ class AlimentController extends Controller
 {
   //Display all by category
   public function index(){
-      $aliments = Aliment::all()->sortBy('expiration_date');
+      //In middleware?
+      $user = 0;  //It's the non-logged user
+      if( Auth::check() ){
+          $user = Auth::user()->id;
+      }
+
+      $cupboards_id = Cupboard::where('user_id', $user)->pluck('id');
+      $aliments = !$cupboards_id->isEmpty() ? Aliment::where('cupboard_id', $cupboards_id)->get()->sortBy('expiration_date') : [];
       $categories = Category::has('aliments')->get();
       return view('pages.aliments.index', compact('aliments', 'categories'));
   }
@@ -46,9 +54,15 @@ class AlimentController extends Controller
   //Show the add form
   public function create($default=null)
   {
-    $categories = Category::pluck('name', 'id');
-    $cupboards = Cupboard::pluck('name', 'id');
-    return view('pages.aliments.create', compact('categories', 'cupboards', 'default'));
+      $categories = Category::pluck('name', 'id');
+
+      $user = 0;  //It's the non-logged user
+      if( Auth::check() ){
+          $user = Auth::user()->id;
+      }
+
+      $cupboards = Cupboard::where('user_id', $user)->pluck('name', 'id');
+      return view('pages.aliments.create', compact('categories', 'cupboards', 'default'));
   }
 
   //Store an added resource
@@ -81,7 +95,6 @@ class AlimentController extends Controller
 
   public function update($id, Request $request)
   {
-      //dd($request->all());
       //TODO more required
       $this->validate($request, [
           'name' => 'required',

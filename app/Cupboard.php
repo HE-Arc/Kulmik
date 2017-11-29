@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Cupboard extends Model
 {
   protected $fillable = [
-      'name', 'description', 'temperature', 'volume',
+      'name', 'description', 'temperature', 'volume', 'user_id'
   ];
 
   public function aliments()

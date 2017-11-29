@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-lg-12 margin-tb">
             <div class="pull-left">
-                <h2>Add new Cupboard</h2>
+                <h2>Edit Cupboard</h2>
             </div>
             <div class="pull-right">
                 <a class="btn btn-primary" href="{{ route('containers.index') }}">Back</a>
@@ -24,7 +24,7 @@
     </div>
     @endif
 
-    {!! Form::open(array('route' => 'containers.store', 'method'=>'POST')) !!}
+    {!! Form::open(['method' => 'put', 'url' => route('containers.update', $cupboard)]) !!}
         <div class="form-group">
             {!! Form::label('name', 'Name') !!}
             {!! Form::text('name', $cupboard->name, ['class' => 'form-control']) !!}
@@ -41,7 +41,7 @@
             {!! Form::label('volume', 'Volume') !!}
             {!! Form::number('volume', $cupboard->volume, ['class' => 'form-control']) !!}
         </div>
-        <button class="btn btn-primary">Add</button>
+        <button class="btn btn-primary">Update</button>
     {!! Form::close() !!}
 
 @endsection
