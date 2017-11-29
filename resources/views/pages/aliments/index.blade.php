@@ -19,13 +19,8 @@
                 @if($aliment->category_id == $category->id)
                 <div class="row">
                     <div class="col-sm-2">{{ $aliment->name }}</div>
-                    @if($aliment->description == "")
-                        <div class="col-sm-2">no description</div>
-                    @elseif($aliment->description != "")
-                        <div class="col-sm-2">{{ $aliment->description}}</div>
-                    @endif
-                    <div class="col-sm-1">{{ $aliment->weight}}
-                        {{ ($category->name == "drinks" || $category->name == "alcohol" || $category->name == "sweet beverage" || $category->name == "juice") ? "[L]" : "[g]" }}</div>
+                    <div class="col-sm-2"><b>total weight: </b>{{ $aliment->weight * $aliment->quantity }}
+                        {{ ($category->name == "drinks" || $category->name == "alcohol" || $category->name == "sweet beverage" || $category->name == "juice") ? "[ml]" : "[g]" }}</div>
                     <div class="col-sm-2"><b>quantity: </b>{{ $aliment->quantity}}</div>
                     <div class="col-sm-2"><b>bought on: </b>{{ $aliment->buy_date}}</div>
                     <div class="col-sm-2"><b>best until: </b>{{ $aliment->expiration_date}}</div>

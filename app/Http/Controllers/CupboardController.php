@@ -11,9 +11,9 @@ class CupboardController extends Controller
 {
     public function index(){
 
-        $cupboards = Cupboard::all();
-        $categories = Category::all();
-        $aliments = Aliment::all();
+        $cupboards = Cupboard::all()->sortBy('id');
+        $categories = Category::all()->sortBy('id');
+        $aliments = Aliment::all()->sortBy('expiration_date');
 
         return view('pages.cupboard.index', compact('cupboards', 'categories', 'aliments'));
     }

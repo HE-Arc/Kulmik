@@ -14,7 +14,7 @@ class AlimentController extends Controller
 {
   //Display all by category
   public function index(){
-      $aliments = Aliment::all();
+      $aliments = Aliment::all()->sortBy('expiration_date');
       $categories = Category::has('aliments')->get();
       return view('pages.aliments.index', compact('aliments', 'categories'));
   }

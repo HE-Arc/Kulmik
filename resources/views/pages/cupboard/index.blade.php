@@ -27,18 +27,11 @@
 
                 @if($aliment->cupboard_id == $cupboard->id)
                     @if($aliment->category_id == $category->id)
-                        <h3>{{ ucfirst($category->name) }}</h3>
                         <ul>
                             <div class="row" id={{$category->name}}>
                                 <div class="col-sm-2">{{ $aliment->name }}</div>
-                                @if($category->id == 7)
-                                    <div class="col-sm-2">{{ $aliment->description}}</div>
-                                @endif
-                                @if($category->id == 6 || $category->id == 7 || $category->id == 9)
-                                    <div class="col-sm-1">{{ $aliment->weight}} [L]</div>
-                                @elseif($category->id != 6 && $category->id != 7 && $category->id != 9)
-                                    <div class="col-sm-1">{{ $aliment->weight}} [g]</div>
-                                @endif
+                                <div class="col-sm-2"><b>total weight: </b>{{ $aliment->weight * $aliment->quantity}}
+                                    {{ ($category->name == "drinks" || $category->name == "alcohol" || $category->name == "sweet beverage" || $category->name == "juice") ? "[ml]" : "[g]" }}</div>
                                 <div class="col-sm-2"><b>quantity: </b>{{ $aliment->quantity}}</div>
                                 <div class="col-sm-2"><b>bought on: </b>{{ $aliment->buy_date}}</div>
                                 <div class="col-sm-2"><b>best until: </b>{{ $aliment->expiration_date}}</div>

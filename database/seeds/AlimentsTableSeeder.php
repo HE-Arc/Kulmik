@@ -147,15 +147,6 @@ class AlimentsTableSeeder extends Seeder
             'expiration_date' => Carbon::today()->addMonth(),
             'cupboard_id' => 1,
             'category_id' => 4]);
-        //milk: 2 months ago
-        DB::table('aliments')->insert([
-            'name' => 'Milk',
-            'weight' => 1000,
-            'quantity' => 1,
-            'buy_date'  => Carbon::today()->subMonths(2),
-            'expiration_date' => Carbon::today()->subDay(),
-            'cupboard_id' => 1,
-            'category_id' => 4]);
 
         //endregion 4 DAIRY
 
@@ -183,7 +174,7 @@ class AlimentsTableSeeder extends Seeder
         DB::table('aliments')->insert([
             'name' => 'Chicken leftover',
             'weight' => 200,
-            'quantity' => 6,
+            'quantity' => 1,
             'buy_date'  => Carbon::yesterday(),
             'expiration_date' => Carbon::yesterday()->addDays(3),
             'cupboard_id' => 1,
@@ -270,6 +261,15 @@ class AlimentsTableSeeder extends Seeder
             'expiration_date' => Carbon::today()->addMonths(2),
             'cupboard_id' => 1,
             'category_id' => 11]);
+        //milk: 2 months ago
+        DB::table('aliments')->insert([
+            'name' => 'Milk',
+            'weight' => 1000,
+            'quantity' => 1,
+            'buy_date'  => Carbon::today()->subMonths(2),
+            'expiration_date' => Carbon::today()->subDay(),
+            'cupboard_id' => 1,
+            'category_id' => 9]);
 
         //endregion 9 DRINKS
 
