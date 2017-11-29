@@ -7,14 +7,18 @@
     </div>
     @foreach ($cupboards as $cupboard)
         <h2>
-            <b>{{ ucfirst($cupboard->name) }}</b>
-            <div class="btn-group">
-                <a href="{{ route('aliments.create', ['cupboard_id' => $cupboard->id]) }}" class="btn btn-xs btn-primary">Add</a>
-                <a href="{{ route('containers.edit', $cupboard) }}" class="btn btn-xs btn-warning">Edit</a>
-                {!! Form::open(['method' => 'DELETE', 'url' => route('containers.destroy', $cupboard->id), 'style'=>'display:inline', 'onsubmit' => 'return ConfirmDelete()']) !!}
-                  <button class="btn btn-xs btn-danger">Delete</button>
-                {!! Form::close() !!}
-                <!--<a href="{{ route('containers.destroy', $cupboard->id) }}" class="btn btn-xs btn-danger">Delete</a>-->
+            <div class="row" id={{$cupboard->name}}>
+                <div class="col-sm-4"><b>{{ ucfirst($cupboard->name) }}</b></div>
+                <div class="col-sm-2">
+                    <div class="col-sm-2"><a href="{{ route('aliments.create', ['cupboard_id' => $cupboard->id]) }}" class="btn btn-xs btn-primary">Add</a></div>
+                    <div class="col-sm-2"><a href="{{ route('containers.edit', $cupboard) }}" class="btn btn-xs btn-warning">Edit</a></div>
+                    <div class="col-sm-2">
+                        {!! Form::open(['method' => 'DELETE', 'url' => route('containers.destroy', $cupboard->id), 'style'=>'display:inline', 'onsubmit' => 'return ConfirmDelete()']) !!}
+                          <button class="btn btn-xs btn-danger">Delete</button>
+                        {!! Form::close() !!}
+                    </div>
+                    <!--<a href="{{ route('containers.destroy', $cupboard->id) }}" class="btn btn-xs btn-danger">Delete</a>-->
+                </div>
             </div>
         </h2>
         <p>{{ $cupboard->description }}<br/>
@@ -35,6 +39,14 @@
                                 <div class="col-sm-2"><b>quantity: </b>{{ $aliment->quantity}}</div>
                                 <div class="col-sm-2"><b>bought on: </b>{{ $aliment->buy_date}}</div>
                                 <div class="col-sm-2"><b>best until: </b>{{ $aliment->expiration_date}}</div>
+                                <div class="col-sm-1">
+                                  <div class="col-sm-2"><a href="{{ route('aliments.edit', $aliment) }}" class="btn btn-xs btn-warning">Edit</a></div>
+                                  <div class="col-sm-2">
+                                      {!! Form::open(['method' => 'DELETE', 'url' => route('aliments.destroy', $aliment->id), 'onsubmit' => 'return ConfirmDelete()']) !!}
+                                          <button class="btn btn-xs btn-danger">Delete</button>
+                                      {!! Form::close() !!}
+                                  </div>
+                                </div>
                             </div>
                         </ul>
                     @endif
