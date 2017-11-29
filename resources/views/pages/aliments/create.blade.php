@@ -24,37 +24,35 @@
     </div>
     @endif
 
-    <h1><?php var_dump($default) ?></h1>
-
     {!! Form::open(array('route' => 'aliments.store', 'method'=>'POST')) !!}
-    <div class="form-group">
-        {!! Form::label('name', 'Name') !!}
-        {!! Form::text('name', null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('weight', 'Weight') !!}
-        {!! Form::number('weight', null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('quantity', 'Quantity') !!}
-        {!! Form::number('quantity', null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('buy_date', 'Buy Date') !!}
-        {!! Form::date('buy_date', null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('expiration_date', 'Expiration Date') !!}
-        {!! Form::date('expiration_date', null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('category_id', 'Category') !!}
-        {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
-    </div>
-    <div class="form-group">
-        {!! Form::label('cupboard_id', 'Cupboard') !!}
-        {!! Form::select('cupboard_id', $cupboards, null, ['class' => 'form-control']) !!}
-    </div>
+        <div class="form-group">
+            {!! Form::label('name', 'Name') !!}
+            {!! Form::text('name', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('weight', 'Weight') !!}
+            {!! Form::number('weight', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('quantity', 'Quantity') !!}
+            {!! Form::number('quantity', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('buy_date', 'Buy Date') !!}
+            {!! Form::date('buy_date', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('expiration_date', 'Expiration Date') !!}
+            {!! Form::date('expiration_date', null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('category_id', 'Category') !!}
+            {!! Form::select('category_id', $categories, null, ['class' => 'form-control']) !!}
+        </div>
+        <div class="form-group">
+            {!! Form::label('cupboard_id', 'Cupboard') !!}
+            {!! Form::select('cupboard_id', $cupboards, null, ['class' => 'form-control']) !!}
+        </div>
         <button class="btn btn-primary">Add</button>
     {!! Form::close() !!}
 

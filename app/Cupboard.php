@@ -9,4 +9,9 @@ class Cupboard extends Model
   protected $fillable = [
       'name', 'description', 'temperature', 'volume',
   ];
+
+  public function aliments()
+  {
+      return $this->hasMany('App\Aliment');
+  }
 }
