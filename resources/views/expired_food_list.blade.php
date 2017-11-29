@@ -1,10 +1,5 @@
 @section('expired_food')
 
-    {{$d1}}
-    {{$d2}}
-    {{$tomorrow}}
-    {{$thisWeek}}
-
     @if(count($expired) > 0)
         <h4>Expired</h4>
     @endif

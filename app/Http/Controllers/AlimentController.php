@@ -22,26 +22,24 @@ class AlimentController extends Controller
   public function expiredFood(){
 
       //region const
+
       $d1 = Carbon::today()->startOfDay();
       $d2 = Carbon::today()->endOfDay();
 
-      $tomorrow = Carbon::tomorrow()->endOfDay();
-
-
+      $tomorrow = Carbon::tomorrow();
       $thisWeek = Carbon::today()->addWeek(1);
+
+      $todayRange = [$d1, $d2];
+      $oneWeekRange = [$tomorrow, $thisWeek];
+
       //endregion const
 
-      $expired = Aliment::all()->where('expiration_date', '<=', $tomorrow);  //future
+      //https://laracasts.com/discuss/channels/laravel/where-between-dates-selection
+      $expired = Aliment::all()->where('expiration_date', '<', $d1)->sortBy('expiration_date');
+      $today = Aliment::query()->whereBetween('expiration_date', $todayRange, 'and', false)->get()->sortBy('expiration_date');
+      $expiresThisWeek = Aliment::query()->whereBetween('expiration_date', $oneWeekRange, 'and', false)->get()->sortBy('expiration_date');
 
-      $today = Aliment::all()->where('expiration_date', '>=', $d1)       //past
-                                ->where('expiration_date', '<', $d2);   //future
-
-      $expiresThisWeek = Aliment::all()
-          ->where('expiration_date', '>=', $d2)         //'past'
-          ->where('expiration_date', '<', $thisWeek);   //future
-
-      return view('welcome', compact('expired', 'today', 'expiresThisWeek',
-          'd1', 'd2', 'tomorrow', 'thisWeek'));
+      return view('welcome', compact('expired', 'today', 'expiresThisWeek'));
   }
 
 
