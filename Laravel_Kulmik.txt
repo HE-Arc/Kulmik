@@ -99,6 +99,9 @@ Installation:
     php artisan migrate:fresh --seed -> does both
     php artisan make:seeder []       -> creates seeder class
 
+    12. Sonstiges
+    How to format date when shown in index, etc: https://stackoverflow.com/questions/40038521/change-the-date-format-in-laravel-view-page
+
 -------------------------------------------------------------------------------------
 
 Directory structure : MVC - Model - View - Controller
