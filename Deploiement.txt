@@ -1,14 +1,14 @@
-Étapes de déploiement du serveur :
+ï¿½tapes de dï¿½ploiement du serveur :
 
 1.Connexion au serveur distant:
 	#ssh -p 2207 poweruser@srvz-webapp.he-arc.ch
 	#Accepter
 	#Entrez votre mot de passe
 
-2.Demander la clé SSH sur GitHub:
+2.Demander la clï¿½ SSH sur GitHub:
 	#curl https://api.github.com/users/<USER_NAME>/keys
 
-3.Entrer la clé reçu dans le fichier authorized_keys avec nano:
+3.Entrer la clï¿½ reï¿½u dans le fichier authorized_keys avec nano:
 	#nano /home/poweruser/.ssh/authorized_keys
 
 4.Redemarrer le service ssh:
@@ -17,6 +17,9 @@
 4.Connexion SFTP avec WInSCP:
 	#Adresse : 	srvz-webapp.he-arc.ch
 	#User:		poweruser
-	#Mdp :		-Cliquez sur "Avancé"
+	#Mdp :		-Cliquez sur "Avancï¿½"
 			-Authentification
-			-Fichier de clé privée : parcourir, entrez votre fichier et convertissez le en lisible pour WinSCP
+			-Fichier de clï¿½ privï¿½e : parcourir, entrez votre fichier et convertissez le en lisible pour WinSCP
+
+-> suivre tuto sur: https://github.com/HE-Arc/webapp-server/tree/master/files/laravel
+-> npm install dans /www/app/
