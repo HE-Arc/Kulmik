@@ -25,7 +25,7 @@
       </p>
 
       <p>
-        Try it here: <a href="{{ url('/containers') }}" class="btn btn-xs btn-info">Ok, I'm in!</a>
+        Try it here: <a href="{{ url('/guest') }}" class="btn btn-xs btn-info">Ok, I'm in!</a>
       </p>
       <p>
         Wow this app is so cool I'm gonna <a href="{{ url('/home') }}" class="btn btn-xs btn-info">register</a>

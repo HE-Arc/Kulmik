@@ -11,7 +11,11 @@
     <title>{{ config('app.name', 'Kulmik') }}</title>
 
     <!-- Styles -->
-    <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    @if (env('APP_ENV') != 'local')
+        <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
+    @else
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @endif
 </head>
 <body>
     <div id="app">
@@ -22,8 +26,14 @@
         </div>
     </div>
     @include('layouts.footer')
+    
     <!-- Scripts -->
-    <script src="{{ secure_asset('js/app.js') }}"></script>
+    @if (env('APP_ENV') != 'local')
+        <script src="{{ secure_asset('js/app.js') }}"></script>
+    @else
+        <script src="{{ asset('js/app.js') }}"></script>
+    @endif
+
     <script>
         function ConfirmDelete()
         {

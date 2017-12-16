@@ -17,6 +17,7 @@ Route::get('/', 'AlimentController@expiredFood');
 //  Authentication
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/guest', 'GuestController@createTempUser');
 
 //  Containers, Create all crud routes
 Route::resource('containers', 'CupboardController');

@@ -25,9 +25,11 @@
                 <!--{{ Request::is('/') ? 'active' : '' }} make the button active so the user see where he is-->
                 <!--{{ url('about') }} dynamic link with routes-->
                 <li class="{{ Request::is('/') ? 'active' : '' }}"><a href="{{ url('/') }}">Home</a></li>
-                <li class="{{ Request::is('containers') ? 'active' : '' }}"><a href="{{ url('containers') }}">Containers</a></li>
-                <li class="{{ Request::is('aliments') ? 'active' : '' }}"><a href="{{ url('aliments') }}">Aliments</a></li>
-                <li class="{{ Request::is('recipes') ? 'active' : '' }}"><a href="{{ url('recipes') }}">Recipes</a></li>
+                @if (Auth::check())
+                    <li class="{{ Request::is('containers') ? 'active' : '' }}"><a href="{{ url('containers') }}">Containers</a></li>
+                    <li class="{{ Request::is('aliments') ? 'active' : '' }}"><a href="{{ url('aliments') }}">Aliments</a></li>
+                    <li class="{{ Request::is('recipes') ? 'active' : '' }}"><a href="{{ url('recipes') }}">Recipes</a></li>
+                @endif
                 <li class="dropdown">
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">About<span class="caret"></span></a>
                   <ul class="dropdown-menu" role="menu">
