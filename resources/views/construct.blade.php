@@ -1,6 +1,12 @@
 @extends('layouts.master')
 
 @section('content')
-<h1>Page under construction</h1>
-<p>We're sorry. This page is under developpement and you cannot access it yet !</p>
+<h1>Recipes generator</h1>
+<p>Sorry, this feature isn't currently available for now, stay tuned for the upcoming updates!</p>
+
+<div class="container">
+    <h2>Main concept</h2>
+    <p>Automatically generate recipes using the aliments which expiration date is due soon.</p>
+</div>
+
 @endsection

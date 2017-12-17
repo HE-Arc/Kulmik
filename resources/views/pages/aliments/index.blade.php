@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
-    <h1>All your food is here</h1>
+    <h1>Aliments list</h1>
     Do you wan't to add an aliment : <a href="{{ route('aliments.create') }}" class="btn btn-xs btn-primary">Add an aliment</a>
 
     <!--TODO: refactor -->

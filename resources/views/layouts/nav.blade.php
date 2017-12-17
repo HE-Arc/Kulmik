@@ -12,11 +12,6 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-
-            <!-- Branding Image -->
-            <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Kulmik') }}
-            </a>
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -70,7 +65,7 @@
                                 </li>
                             </ul>
                         </li>
-                        @endguest
+                    @endguest
             </ul>
         </div>
     </div>

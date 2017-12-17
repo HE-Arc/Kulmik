@@ -2,8 +2,8 @@
 
 @section('content')
     <div class="row">
-      <h1>Fridges list</h1>
-      Do you wan't to add a cupboard : <a href="{{ route('containers.create') }}" class="btn btn-xs btn-primary">Add a container</a>
+      <h1>Containers list</h1>
+      Add a new container ? <a href="{{ route('containers.create') }}" class="btn btn-xs btn-primary">New container</a>
     </div>
     @foreach ($cupboards as $cupboard)
         <h2>
