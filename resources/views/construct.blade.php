@@ -6,7 +6,7 @@
 
 <div class="container">
     <h2>Main concept</h2>
-    <p>Automatically generate recipes using the aliments which expiration date is due soon.</p>
+    <p>Automatically generate recipes using the aliments which expiration date will soon end.</p>
 </div>
 
 @endsection
