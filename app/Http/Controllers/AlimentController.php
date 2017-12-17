@@ -21,9 +21,12 @@ class AlimentController extends Controller
           $user = Auth::user()->id;
       }
 
-      $cupboards_id = Cupboard::where('user_id', $user)->pluck('id');
-      $aliments = !$cupboards_id->isEmpty() ? Aliment::where('cupboard_id', $cupboards_id)->get()->sortBy('expiration_date') : [];
+      $cupboards = Cupboard::where('user_id', $user)->get();
+      $cupboards_id = $cupboards->pluck('id');
+
+      $aliments = !$cupboards->isEmpty() ? Aliment::whereIn('cupboard_id', $cupboards_id)->get()->sortBy('expiration_date') : [];
       $categories = Category::has('aliments')->get();
+
       return view('pages.aliments.index', compact('aliments', 'categories'));
   }
 

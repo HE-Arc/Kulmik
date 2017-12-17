@@ -23,7 +23,9 @@ class CupboardController extends Controller
         }
 
         $cupboards = Cupboard::where('user_id', $user)->get();
-        $aliments = !$cupboards->isEmpty() ? Aliment::where('cupboard_id', $cupboards->pluck('id'))->get()->sortBy('expiration_date') : [];
+        $cupboards_id = $cupboards->pluck('id');
+
+        $aliments = !$cupboards->isEmpty() ? Aliment::whereIn('cupboard_id', $cupboards_id)->get()->sortBy('expiration_date') : [];
         $categories = Category::all()->sortBy('id');
 
         return view('pages.cupboard.index', compact('cupboards', 'categories', 'aliments'));
