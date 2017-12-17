@@ -133,7 +133,7 @@ Création d'un Model + Controller
 * Eloquent   => [insert name] : `Tasks`
 * migration  => `create_tasks_table`
 
-11. Data REST
+11. Data __REST__
 ```
 GET     /posts
 GET     /posts/create       //creation
@@ -143,7 +143,7 @@ PATCH   /posts/{id}         //modification
 DELETE  /posts/{id}         //deletion
 CSRF - cross site request forgery
 ```
-        https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
+https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
 
 * Management de la base de données :
 ```
@@ -156,4 +156,48 @@ php artisan make:seeder []       -> creates seeder class
 12. Sonstiges
 
 Formattage de date: 
+
 * https://stackoverflow.com/questions/40038521/change-the-date-format-in-laravel-view-page
+
+___
+
+## Déploiement
+
+1. Connexion au serveur distant
+
+```
+ssh -p 2207 poweruser@srvz-webapp.he-arc.ch
+```
+
+2. Demander la clé __SSH__ sur Github (si besoin)
+
+```
+curl https://api.github.com/users/<USER_NAME>/keys
+```
+
+3. Entrer la clé reçu dans le fichier `authorized_keys` avec *nano* ou *vim* (selon motivation ou si vous êtes __groovytron__):
+
+```
+nano /home/poweruser/.ssh/authorized_keys
+```
+
+4. Redemarrer le service __SSH__:
+
+```
+sudo service ssh restart
+```
+
+5. Connexion __SFTP__ avec *WInSCP*:
+* Adresse : 	`srvz-webapp.he-arc.ch`
+* User:		`poweruser`
+* Mdp :
+
+** Cliquez sur "Avancé"
+** Authentification
+** Fichier de clé privée : parcourir, entrer le fichier et convertir en lisible pour *WinSCP*
+
+5. Clonage le projet dans le dossier `www`
+
+6. Suivre les indications du lien depuis la rubrique *Nginx*:
+	
+* https://github.com/HE-Arc/webapp-server/blob/master/files/laravel/README.md
