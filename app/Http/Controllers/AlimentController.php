@@ -13,8 +13,8 @@ use Carbon\Carbon;
 
 class AlimentController extends Controller
 {
-  //Display all by category
-  public function index(){
+    /** Display food by category */
+    public function index(){
       $categories = [];
       $aliments = [];
       $cupboards = [];
@@ -31,9 +31,10 @@ class AlimentController extends Controller
       }
 
       return view('pages.aliments.index', compact('aliments', 'categories', 'cupboards_id'));
-  }
+    }
 
-  public function expiredFood(){
+    /** Get expired food and split them into three categories */
+    public function expiredFood(){
       $expired = [];
       $today = [];
       $expiresThisWeek = [];
@@ -73,15 +74,13 @@ class AlimentController extends Controller
             ->whereIn('cupboard_id', $cupboards_id)
             ->whereBetween('expiration_date', $oneWeekRange, 'and', false)
             ->get()->sortBy('expiration_date');
-      }
+    }
 
       return view('welcome', compact('expired', 'today', 'expiresThisWeek', 'cupboards'));
-  }
+    }
 
-
-  //Show the add form
-  public function create($default=null)
-  {
+    /** FORM: new Aliment */
+    public function create($default=null){
       $cupboards = [];
       $categories = Category::pluck('name', 'id');
 
@@ -91,11 +90,10 @@ class AlimentController extends Controller
       }
 
       return view('pages.aliments.create', compact('categories', 'cupboards', 'default'));
-  }
+    }
 
-  //Store an added resource
-  public function store(Request $request)
-  {
+    /** FORM: store Aliment resources */
+    public function store(Request $request){
       $this->validate($request, [
           'name' => 'required',
           'weight' => 'required',
@@ -106,26 +104,24 @@ class AlimentController extends Controller
 
       Aliment::create($request->all());
       return redirect()->route('aliments.index')->with('success', 'Aliment added successfully');
-  }
+    }
 
-  //Display specified resource
-  public function show($id)
-  {
+    /** SHOW: show Aliment*/
+     public function show($id){
       $aliment = Aliment::findOrFail($id);
       return view('pages.aliments.show', compact('aliment'));
-  }
+    }
 
-  //Show the edit form
-  public function edit($id)
-  {
-      $aliment = Aliment::findOrFail($id);
-      $categories = Category::pluck('name', 'id');
-      $cupboards = Cupboard::pluck('name', 'id');
-      return view('pages.aliments.edit', compact('aliment', 'categories', 'cupboards'));
-  }
+    /** FORM: edit Aliment */
+    public function edit($id){
+        $aliment = Aliment::findOrFail($id);
+        $categories = Category::pluck('name', 'id');
+        $cupboards = Cupboard::pluck('name', 'id');
+        return view('pages.aliments.edit', compact('aliment', 'categories', 'cupboards'));
+    }
 
-  public function update($id, Request $request)
-  {
+    /** FORM: update Aliment */
+    public function update($id, Request $request){
       $this->validate($request, [
           'name' => 'required',
           'weight' => 'required',
@@ -138,11 +134,11 @@ class AlimentController extends Controller
       $aliment->cupboard_id = $request->cupboard_id;
       $aliment->update($request->all());
       return redirect()->route('aliments.index')->with('success', 'Aliment updated successfully');
-  }
+    }
 
-  public function destroy($id)
-  {
+    /** FORM: destroy Aliment */
+    public function destroy($id){
       Aliment::find($id)->delete();
       return redirect()->route('aliments.index')->with('success', 'Aliment deleted successfully');
-  }
+    }
 }

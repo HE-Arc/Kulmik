@@ -10,11 +10,13 @@ use Illuminate\Support\Facades\Auth;
 
 class CupboardController extends Controller
 {
+        /** constructor */
     public function __construct()
     {
         $this->middleware('auth');
     }
 
+    /** Display cupboard by descendant creation date order */
     public function index(){
         $cupboards = [];
         $categories = [];
@@ -33,13 +35,13 @@ class CupboardController extends Controller
         return view('pages.cupboard.index', compact('cupboards', 'categories', 'aliments'));
     }
 
-    //Show the add form
+    /** FORM: new Cupboard */
     public function create()
     {
       return view('pages.cupboard.create');
     }
 
-    //Store an added resource
+    /** FORM: store Cupboard resources */
     public function store(Request $request)
     {
         $this->validate($request, [
@@ -57,20 +59,21 @@ class CupboardController extends Controller
         return redirect()->route('containers.index')->with('success', 'Cupboard added successfully');
     }
 
-    //Display specified resource
+    /** SHOW: show Cupboard using ID */
     public function show($id)
     {
         $cupboard = Cupboard::findOrFail($id);
         return view('pages.cupboard.show', compact('cupboard'));
     }
 
-    //Show the edit form
+    /** FORM: edit Cupboard */
     public function edit($id)
     {
         $cupboard = Cupboard::findOrFail($id);
         return view('pages.cupboard.edit', compact('cupboard'));
     }
 
+    /** FORM: update Cupboard */
     public function update($id, Request $request)
     {
         $this->validate($request, [
@@ -85,6 +88,7 @@ class CupboardController extends Controller
         return redirect()->route('containers.index')->with('success', 'Cupboard updated successfully');
     }
 
+    /** FORM: destroy Cupboard */
     public function destroy($id)
     {
         $cupboard = Cupboard::find($id);

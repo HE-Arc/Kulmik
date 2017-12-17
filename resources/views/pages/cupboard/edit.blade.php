@@ -13,6 +13,7 @@
         </div>
     </div>
 
+    <!-- error check -->
     @if(count($errors) > 0)
     <div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -24,6 +25,7 @@
     </div>
     @endif
 
+    <!-- form management -->
     {!! Form::open(['method' => 'put', 'url' => route('containers.update', $cupboard)]) !!}
         <div class="form-group">
             {!! Form::label('name', 'Name') !!}

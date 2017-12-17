@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 
 class GuestController extends Controller
 {
+    /** create a temporary user which allows people to test the application without having registered themselves */
     public function createTempUser()
     {
       //Delete all olds temporary users
@@ -25,9 +26,8 @@ class GuestController extends Controller
       $user->password = Hash::make('123456');
       $user->save();
 
+      //seed database
       Artisan::call('db:seed');
-
-      //$user = DB::table('users')->where('name', 'Guest')->get();
 
       Auth::login($user);
 

@@ -31,7 +31,6 @@
         Wow this app is so cool I'm gonna <a href="{{ url('/home') }}" class="btn btn-xs btn-info">register</a>
       </p>
 
-      <!--TODO: Aliments grouped by expiration date with a warning note -->
   @else
       <h1>Welcome <b>{{ Auth::user()->name }}!</b></h1>
 

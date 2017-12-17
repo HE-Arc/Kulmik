@@ -3,13 +3,14 @@
 @section('content')
     <h1>Aliments list</h1>
 
+    <!-- check whether current user posses at least one cupboard -->
     @if(sizeof($cupboards_id))
-        Add a new aliment: <a href="{{ route('aliments.create') }}" class="btn btn-xs btn-primary">New aliment</a>
-        <hr/>
-
+        <p>Add a new aliment: <a href="{{ route('aliments.create') }}" class="btn btn-xs btn-primary">New aliment</a></p>
+        <hr>
         @foreach($categories as $category)
         <div class="container">
              <div class="panel panel-default">
+                <!--#region CATEGORY NAME-->
                 <div class="panel-heading">
                     <h2>
                         {{ ucfirst($category->name) }}
@@ -20,7 +21,9 @@
                     {!! Form::close() !!}-->
                     </h2>
                 </div>
-                <div class="panel-body">
+                <!--#endregion CATEGORY NAME-->
+                <!--#region ALIMENTS-->
+                 <div class="panel-body">
                     @foreach ($aliments as $aliment)
                         @if($aliment->category_id == $category->id)
                             <div class="row">
@@ -43,10 +46,12 @@
                     @endforeach
                     <hr>
                 </div>
+                <!--#endregion ALIMENTS-->
              </div>
         </div>
         @endforeach
     @else
         <p>Create a new container to add aliments: <a class="btn btn-xs btn-primary" href="{{ route('containers.create') }}">Create container</a></p>
+        <hr>
     @endif
 @endsection

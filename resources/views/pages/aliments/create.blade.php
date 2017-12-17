@@ -13,6 +13,7 @@
         </div>
     </div>
 
+    <!-- error check -->
     @if(count($errors) > 0)
     <div class="alert alert-danger">
         <strong>Whoops!</strong> There were some problems with your input.<br><br>
@@ -24,6 +25,7 @@
     </div>
     @endif
 
+    <!-- form management -->
     {!! Form::open(array('route' => 'aliments.store', 'method'=>'POST')) !!}
         <div class="form-group">
             {!! Form::label('name', 'Name') !!}

@@ -8,8 +8,10 @@
     <hr/>
     @foreach ($cupboards as $cupboard)
     <div class="panel panel-default">
+    <!--#region CUPBOARD NAME-->
       <div class="panel-heading">
-        <h2>
+
+          <h2>
             <div class="row" id={{$cupboard->name}}>
                 <div class="col-sm-4"><b>{{ ucfirst($cupboard->name) }}</b></div>
                 <div class="col-sm-2">
@@ -29,8 +31,8 @@
             <b>temperature: </b>{{$cupboard->temperature}}
         </p>
       </div>
-      <div class="panel-body">
-
+    <!--#endregion CUPBOARD NAME-->
+        <div class="panel-body">
         @foreach($categories as $category)
             @foreach ($aliments as $aliment)
 
