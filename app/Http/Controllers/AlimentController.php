@@ -35,42 +35,41 @@ class AlimentController extends Controller
       $expiresThisWeek = [];
       $cupboards = [];
 
-      //Get user aliments
       if( Auth::check() ){
+        //Get user aliments
         $user = Auth::user();
         $cupboards = $user->cupboards();
         $cupboards_id = $cupboards->pluck('id');
         $aliments = $user->aliments();
+
+        //region const
+        $d1 = Carbon::today()->startOfDay();
+        $d2 = Carbon::today()->endOfDay();
+
+        $tomorrow = Carbon::tomorrow();
+        $thisWeek = Carbon::today()->addWeek(1);
+
+        $todayRange = [$d1, $d2];
+        $oneWeekRange = [$tomorrow, $thisWeek];
+
+        //endregion const
+
+        //https://laracasts.com/discuss/channels/laravel/where-between-dates-selection
+        $expired = Aliment::all()
+            ->whereIn('cupboard_id', $cupboards_id)
+            ->where('expiration_date', '<', $d1)
+            ->sortBy('expiration_date');
+
+        $today = Aliment::query()
+            ->whereIn('cupboard_id', $cupboards_id)
+            ->whereBetween('expiration_date', $todayRange, 'and', false)
+            ->get()->sortBy('expiration_date');
+
+        $expiresThisWeek = Aliment::query()
+            ->whereIn('cupboard_id', $cupboards_id)
+            ->whereBetween('expiration_date', $oneWeekRange, 'and', false)
+            ->get()->sortBy('expiration_date');
       }
-
-      //region const
-
-      $d1 = Carbon::today()->startOfDay();
-      $d2 = Carbon::today()->endOfDay();
-
-      $tomorrow = Carbon::tomorrow();
-      $thisWeek = Carbon::today()->addWeek(1);
-
-      $todayRange = [$d1, $d2];
-      $oneWeekRange = [$tomorrow, $thisWeek];
-
-      //endregion const
-
-      //https://laracasts.com/discuss/channels/laravel/where-between-dates-selection
-      $expired = Aliment::all()
-          ->whereIn('cupboard_id', $cupboards_id)
-          ->where('expiration_date', '<', $d1)
-          ->sortBy('expiration_date');
-
-      $today = Aliment::query()
-          ->whereIn('cupboard_id', $cupboards_id)
-          ->whereBetween('expiration_date', $todayRange, 'and', false)
-          ->get()->sortBy('expiration_date');
-
-      $expiresThisWeek = Aliment::query()
-          ->whereIn('cupboard_id', $cupboards_id)
-          ->whereBetween('expiration_date', $oneWeekRange, 'and', false)
-          ->get()->sortBy('expiration_date');
 
       return view('welcome', compact('expired', 'today', 'expiresThisWeek', 'cupboards'));
   }
