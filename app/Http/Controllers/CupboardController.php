@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class CupboardController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index(){
         //In middleware?
         $user = 0;  //It's the non-logged user

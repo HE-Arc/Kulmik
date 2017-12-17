@@ -23,8 +23,8 @@ Route::get('/guest', 'GuestController@createTempUser');
 Route::resource('containers', 'CupboardController');
 
 //  Aliment, Create all crud routes except 'create'
-Route::get('aliments/create', 'AlimentController@create')->name('aliments.create');
-Route::resource('aliments', 'AlimentController', ['except' => ['create']]);
+Route::get('aliments/create', 'AlimentController@create')->name('aliments.create')->middleware('auth');
+Route::resource('aliments', 'AlimentController', ['except' => ['create']])->middleware('auth');
 
 //  Categories
 //Route::get('/category', 'CategoryController@index');
