@@ -1,0 +1,27 @@
+Étapes de déploiement du serveur :
+
+1.Connexion au serveur distant:
+	#ssh -p 2207 poweruser@srvz-webapp.he-arc.ch
+	#Accepter
+	#Entrez votre mot de passe
+
+2.Demander la clé SSH sur GitHub:
+	#curl https://api.github.com/users/<USER_NAME>/keys
+
+3.Entrer la clé reçu dans le fichier authorized_keys avec nano:
+	#nano /home/poweruser/.ssh/authorized_keys
+
+4.Redemarrer le service ssh:
+	#sudo service ssh restart
+
+4.Connexion SFTP avec WInSCP:
+	#Adresse : 	srvz-webapp.he-arc.ch
+	#User:		poweruser
+	#Mdp :		-Cliquez sur "Avancé"
+			-Authentification
+			-Fichier de clé privée : parcourir, entrez votre fichier et convertissez le en lisible pour WinSCP
+
+5.Clone le projet dans le dossier www
+
+6.Suivre les indications du lien depuis la rubrique "Nginx":
+	https://github.com/HE-Arc/webapp-server/blob/master/files/laravel/README.md

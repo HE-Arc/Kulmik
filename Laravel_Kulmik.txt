@@ -1,0 +1,164 @@
+                        Kulmik
+-------------------------------------------------------------------------------------
+links :
+    https://www.youtube.com/channel/UCvnYUxK4wM-IGOFA2izmkGA
+-------------------------------------------------------------------------------------
+
+Application purpose:
+
+-------------------------------------------------------------------------------------
+Installation:
+	- Laragon: Apache server, MySQL
+-------------------------------------------------------------------------------------
+	1. Project creation : open Laragon command line:
+		cd [path]
+		laravel new kulmik
+
+		(can be done using powershell as well)
+
+    2. Configure database :
+		Go to database in Laragon, open 'database' then create a new one.
+		The new database's name is 'kulmik'
+
+    3. Migration
+		php artisan migrate
+	-if table already exists use:
+		php artisant migrate::rollback
+		php artisan migrate:reset 	//rollback
+		php artisan migrate:refresh //rollback and remigrate
+		composer dump-autoload
+
+	4. Authentication
+		php artisan make:auth
+
+	5. Create new tables
+		php artisan make:migration create_[name]_table
+
+	6. Create a model using Eloquent
+		php artisan make:model Task
+		php artisan tinker -> open the shell : interaction with the App
+			>>> App\Task::all() => shows all
+			>>> App\Task::where('d', '>', 2)->get();
+			>>> App\Task::pluck('body'); //returns body of all task
+			>>> App\Task::pluck('body')->first();
+			>>> App\Task::find(1); = App\Task::first();
+			>>> $task->isComplete(); => false
+
+	6.1. Create a model + a table
+		php artisan make:model Task -m
+
+	7. Populate a table using tinker
+		$task = new App\Task;
+		$task->body = 'go to the store';
+		$task->complete = false; => better : in migration => $table->boolean('complete')->default(false);
+		$task->save():
+
+	8. Generate a Controller
+	    php artisan make:controller [insert name]Controller
+
+	9. Route Model Binding
+	    //web.php
+	    Route::get('/tasks/{task}', 'TasksController@show');
+	    //TasksController.php
+        public function show(Task $task){ return view('tasks.show', compact('task')); }
+            -> does the same as Task::find(wildcard)
+
+   10. Layouts and Structure
+       Following method prevent from having to modify every <link href="" ...> one by one
+       -> create a file here : resources/views/layout.blade.php
+        html wrapper which will nest every individual views
+        -> one face for the app, the content will change but that's it
+        <body>
+            @yield('content')
+        </body>
+
+      -> What we need in web.php :
+        - Controller => PostsController
+        - Eloquent   => Post
+        - migration  => create_posts_table
+        php artisan:model Post -mc //m:migration, c:controller
+                                -r //r:resourceful
+        -> getbootstrap
+        -> then :
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+
+   11. Data REST
+        GET     /posts
+        GET     /posts/create       //creation
+        POST    /posts
+        GET     /posts/{id}/edit    //edition
+        PATCH   /posts/{id}         //modification
+        DELETE  /posts/{id}         //deletion
+
+        CSRF - cross site request forgery
+        https://www.owasp.org/index.php/Cross-Site_Request_Forgery_(CSRF)
+
+   DATABASE MANAGEMENT :
+    php artisan migrate:fresh        -> drop+migrates tables
+    php artisan db:seed              -> populates db with seeds
+    php artisan migrate:fresh --seed -> does both
+    php artisan make:seeder []       -> creates seeder class
+
+    12. Sonstiges
+    How to format date when shown in index, etc: https://stackoverflow.com/questions/40038521/change-the-date-format-in-laravel-view-page
+
+-------------------------------------------------------------------------------------
+
+Directory structure : MVC - Model - View - Controller
+
+            http://some-page.com            computer screen
+            -----------------------------------------------------------
+                                 |             /\
+                                 \/            |
+                    model < - > controller -> view
+                    /\      |              |
+                    |       |              |
+                    \/      |              |
+                 database   |              |
+            -----------------------------------------------------------
+
+            Model :
+                - represent entities in a database
+                - help query the database and return the data
+            View :
+                - pages which will be displayed when the app is being accessed
+                - View Component is used for the UI of the app
+
+            Controller :
+                - handle user requests
+                - get required data from the models and pass them to the View
+                - are the intermediary between Model and View Components
+                  to process the business logic and incoming request
+
+App folders :
+
+    app             : meat of the application containing the core code.
+        Console         : contains all the custom Artisan commands: make:command
+        Exceptions      : contains the app exception handler, place custom exception here
+        Http            : contains all the controllers, middleware and requests
+        Providers       : contains all the service's providers for the app *
+    bootstrap       : contains bootstrap framework as well as config files
+                      and framework generated cache files (in Cache dir)
+    config          : contains all the app configuration files
+    database        : contains all db migration seeds. SQLlite db files can be stored here
+        migrations
+        seeds
+    public          : contains assets like images, js files and CSS
+    resources       : contains all view files, LESS or SASS files
+        assets
+        lang            : stores language files
+        views
+    routes          : contains all routes definitions for the app's. php is the file
+                      which receives all the requests to the app. We can redirect the
+                      requests to respective controller methods
+    storage         : contains Blade templates, session files, cache files, ..
+        app
+        framework
+        logs
+    tests           : contains all the test files
+    vendor          : contains all composer dependencies
+
+
+    * https://laravel.com/docs/5.4/providers
+
+-------------------------------------------------------------------------------------
