@@ -16,17 +16,19 @@ class CupboardController extends Controller
     }
 
     public function index(){
-        //In middleware?
-        $user = 0;  //It's the non-logged user
-        if( Auth::check() ){
-            $user = Auth::user()->id;
+        $cupboards = [];
+        $categories = [];
+        $aliments = [];
+
+        if(Auth::check()){
+            $user = Auth::user();
+            $cupboards = $user->cupboards();
+            $aliments = $user->aliments();
+            $categories = Category::all()->sortBy('id');
+
+            $cupboards = $cupboards->get();
+            $aliments = $aliments->get();
         }
-
-        $cupboards = Cupboard::where('user_id', $user)->get();
-        $cupboards_id = $cupboards->pluck('id');
-
-        $aliments = !$cupboards->isEmpty() ? Aliment::whereIn('cupboard_id', $cupboards_id)->get()->sortBy('expiration_date') : [];
-        $categories = Category::all()->sortBy('id');
 
         return view('pages.cupboard.index', compact('cupboards', 'categories', 'aliments'));
     }
@@ -40,7 +42,6 @@ class CupboardController extends Controller
     //Store an added resource
     public function store(Request $request)
     {
-        //TODO more required
         $this->validate($request, [
             'name' => 'required',
             'description' => 'required',
@@ -72,9 +73,11 @@ class CupboardController extends Controller
 
     public function update($id, Request $request)
     {
-        //TODO more required
         $this->validate($request, [
             'name' => 'required',
+            'description' => 'required',
+            'temperature' => 'required',
+            'volume' => 'required'
         ]);
 
         $cupboard = Cupboard::find($id);

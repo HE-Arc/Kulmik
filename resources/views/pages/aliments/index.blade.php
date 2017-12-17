@@ -41,6 +41,6 @@
         @endforeach
 
     @else
-        <p>Create a new container to add aliments!</p>
+        <p>Create a new container to add aliments: <a class="btn btn-xs btn-primary" href="{{ route('containers.create') }}">Create container</a></p>
     @endif
 @endsection

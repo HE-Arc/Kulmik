@@ -15,31 +15,33 @@ class AlimentController extends Controller
 {
   //Display all by category
   public function index(){
-      //In middleware?
-      $user = 0;  //It's the non-logged user
-      if( Auth::check() ){
-          $user = Auth::user()->id;
+      $categories = [];
+      $aliments = [];
+
+      if(Auth::check()){
+          $user = Auth::user();
+          $aliments = $user->aliments();
+          $categories = Category::all()->sortBy('id');
+
+          $aliments = $aliments->get();
       }
-
-      $cupboards = Cupboard::where('user_id', $user)->get();
-      $cupboards_id = $cupboards->pluck('id');
-
-      $aliments = !$cupboards->isEmpty() ? Aliment::whereIn('cupboard_id', $cupboards_id)->get()->sortBy('expiration_date') : [];
-      $categories = Category::has('aliments')->get();
 
       return view('pages.aliments.index', compact('aliments', 'categories'));
   }
 
   public function expiredFood(){
+      $expired = [];
+      $today = [];
+      $expiresThisWeek = [];
+      $cupboards = [];
 
-      //get cupboard name
-      $user = 0;  //It's the non-logged user
+      //Get user aliments
       if( Auth::check() ){
-          $user = Auth::user()->id;
+        $user = Auth::user();
+        $cupboards = $user->cupboards();
+        $cupboards_id = $cupboards->pluck('id');
+        $aliments = $user->aliments();
       }
-
-      $cupboards = Cupboard::where('user_id', $user);
-      $cupboards_id = $cupboards->pluck('id');
 
       //region const
 
@@ -77,21 +79,20 @@ class AlimentController extends Controller
   //Show the add form
   public function create($default=null)
   {
+      $cupboards = [];
       $categories = Category::pluck('name', 'id');
 
-      $user = 0;  //It's the non-logged user
       if( Auth::check() ){
-          $user = Auth::user()->id;
+          $user = Auth::user();
+          $cupboards = $user->cupboards();
       }
 
-      $cupboards = Cupboard::where('user_id', $user)->pluck('name', 'id');
       return view('pages.aliments.create', compact('categories', 'cupboards', 'default'));
   }
 
   //Store an added resource
   public function store(Request $request)
   {
-      //TODO more required
       $this->validate($request, [
           'name' => 'required',
           'weight' => 'required',
@@ -122,9 +123,12 @@ class AlimentController extends Controller
 
   public function update($id, Request $request)
   {
-      //TODO more required
       $this->validate($request, [
           'name' => 'required',
+          'weight' => 'required',
+          'quantity' => 'required',
+          'buy_date' => 'required',
+          'expiration_date' => 'required'
       ]);
 
       $aliment = Aliment::find($id);

@@ -26,4 +26,14 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    public function cupboards()
+    {
+        return $this->hasMany('App\Cupboard');
+    }
+
+    public function aliments()
+    {
+      return Aliment::whereIn('cupboard_id', $this->cupboards()->pluck('id'));
+    }
 }
