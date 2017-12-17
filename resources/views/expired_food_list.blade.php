@@ -1,5 +1,6 @@
 @section('expired_food')
 
+
     @if(count($expired) > 0)
         <h4>Expired</h4>
     @endif

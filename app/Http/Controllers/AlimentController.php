@@ -29,6 +29,8 @@ class AlimentController extends Controller
 
   public function expiredFood(){
 
+      //get cupboard name
+
       //region const
 
       $d1 = Carbon::today()->startOfDay();
@@ -71,6 +73,10 @@ class AlimentController extends Controller
       //TODO more required
       $this->validate($request, [
           'name' => 'required',
+          'weight' => 'required',
+          'quantity' => 'required',
+          'buy_date' => 'required',
+          'expiration_date' => 'required'
       ]);
 
       Aliment::create($request->all());

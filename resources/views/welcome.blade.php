@@ -35,7 +35,7 @@
   @else
       <h1>Welcome <b>{{ Auth::user()->name }}!</b></h1>
 
-      <p>Here is a little resume about your aliments :</p>
+      <p>Here is your soon or already expired food summary :</p>
 
       @include('expired_food_list', compact('aliments'))
       <div class="container">

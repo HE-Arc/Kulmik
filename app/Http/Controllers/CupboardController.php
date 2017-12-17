@@ -36,6 +36,9 @@ class CupboardController extends Controller
         //TODO more required
         $this->validate($request, [
             'name' => 'required',
+            'description' => 'required',
+            'temperature' => 'required',
+            'volume' => 'required'
         ]);
 
         $user = 0;
