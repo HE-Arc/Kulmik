@@ -1,12 +1,15 @@
 # Kulmik
+
+du mot 'frigo' en estonien
+
 1. Objectif principal (ok)
 
-Application qui liste le contenu du frigo.
+* Lister le contenu de ses frigo, congélateur ou tout autre placard
+* Lister les aliments en voie d'expiration
 
 2. Objectif secondaire (ko)
 
-Application qui permet de générer des recettes qui utilisent les aliments en voie d'expiration.
-
+* Générer des recettes qui utilisent les aliments en voie d'expiration.
 
 ## Configuration 
 + Windows
