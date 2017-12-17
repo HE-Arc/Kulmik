@@ -3,7 +3,7 @@
 @section('content')
     <div class="row">
       <h1>Containers list</h1>
-      Add a new container ? <a href="{{ route('containers.create') }}" class="btn btn-xs btn-primary">New container</a>
+      Add a new container: <a href="{{ route('containers.create') }}" class="btn btn-xs btn-primary">New container</a>
     </div>
     @foreach ($cupboards as $cupboard)
         <h2>

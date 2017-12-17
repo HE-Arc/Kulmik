@@ -2,7 +2,7 @@
 
 @section('content')
     <h1>Aliments list</h1>
-    Do you wan't to add an aliment : <a href="{{ route('aliments.create') }}" class="btn btn-xs btn-primary">Add an aliment</a>
+    Add a new aliment: <a href="{{ route('aliments.create') }}" class="btn btn-xs btn-primary">New aliment</a>
 
     <!--TODO: refactor -->
     @foreach($categories as $category)
