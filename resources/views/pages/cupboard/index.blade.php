@@ -5,7 +5,10 @@
       <h1>Containers list</h1>
       Add a new container: <a href="{{ route('containers.create') }}" class="btn btn-xs btn-primary">New container</a>
     </div>
+    <hr/>
     @foreach ($cupboards as $cupboard)
+    <div class="panel panel-default">
+      <div class="panel-heading">
         <h2>
             <div class="row" id={{$cupboard->name}}>
                 <div class="col-sm-4"><b>{{ ucfirst($cupboard->name) }}</b></div>
@@ -25,6 +28,8 @@
             <b>volume: </b>{{$cupboard->volume}}<br/>
             <b>temperature: </b>{{$cupboard->temperature}}
         </p>
+      </div>
+      <div class="panel-body">
 
         @foreach($categories as $category)
             @foreach ($aliments as $aliment)
@@ -53,6 +58,6 @@
                 @endif
             @endforeach
         @endforeach
-        <hr>
+      </div>
     @endforeach
 @endsection
