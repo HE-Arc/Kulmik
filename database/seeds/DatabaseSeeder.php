@@ -12,15 +12,20 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         //Just a user for test
-        DB::table('users')->insert([
-            'name' => 'Toto',
-            'email' => 'toto@he-arc.ch',
-            'password' => bcrypt('secret')
-            ]);
+        /*DB::table('users')->insert([
+            'name' => 'Guest',
+            'email' => 'guest' . \Carbon\Carbon::now()->toDateTimeString(),
+            'password' => bcrypt('123456')
+        ]);*/
 
-        $this->call([
-            CategoriesTableSeeder::class,
-            CupboardsTableSeeder::class,
-            AlimentsTableSeeder::class]);
+        if(DB::table('categories')->count() == 0){
+            $this->call([
+                CategoriesTableSeeder::class]);
+        }
+        if(DB::table('users')->where('name', 'Guest')->count() != 0){
+            $this->call([
+                CupboardsTableSeeder::class,
+                AlimentsTableSeeder::class]);
+        }
     }
 }

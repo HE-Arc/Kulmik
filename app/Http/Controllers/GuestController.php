@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
-
-use Carbon\Carbon;
+use Illuminate\Support\Facades\Artisan;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -23,9 +21,13 @@ class GuestController extends Controller
       //Create temporary user, login and redirect
       $user = new \App\User();
       $user->name = 'Guest';
-      $user->email = 'guest' . Carbon::now()->toDateTimeString();
+      $user->email = 'guest' . \Carbon\Carbon::now()->toDateTimeString();
       $user->password = Hash::make('123456');
       $user->save();
+
+      Artisan::call('db:seed');
+
+      //$user = DB::table('users')->where('name', 'Guest')->get();
 
       Auth::login($user);
 
