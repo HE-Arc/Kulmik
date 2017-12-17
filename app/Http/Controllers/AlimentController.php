@@ -17,16 +17,20 @@ class AlimentController extends Controller
   public function index(){
       $categories = [];
       $aliments = [];
+      $cupboards = [];
 
       if(Auth::check()){
           $user = Auth::user();
           $aliments = $user->aliments();
           $categories = Category::all()->sortBy('id');
 
+          $cupboards = $user->cupboards();
+          $cupboards_id = $cupboards->pluck('id');
+
           $aliments = $aliments->get();
       }
 
-      return view('pages.aliments.index', compact('aliments', 'categories'));
+      return view('pages.aliments.index', compact('aliments', 'categories', 'cupboards_id'));
   }
 
   public function expiredFood(){

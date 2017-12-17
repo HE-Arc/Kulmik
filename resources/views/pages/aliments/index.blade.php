@@ -2,7 +2,8 @@
 
 @section('content')
     <h1>Aliments list</h1>
-    @if(count($aliments) !== 0)
+
+    @if(sizeof($cupboards_id))
         Add a new aliment: <a href="{{ route('aliments.create') }}" class="btn btn-xs btn-primary">New aliment</a>
         <hr/>
 
