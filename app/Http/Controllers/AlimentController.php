@@ -29,6 +29,14 @@ class AlimentController extends Controller
 
   public function expiredFood(){
 
+      //get cupboard name
+      $user = 0;  //It's the non-logged user
+      if( Auth::check() ){
+          $user = Auth::user()->id;
+      }
+
+      $cupboards_id = Cupboard::where('user_id', $user)->pluck('id');
+
       //region const
 
       $d1 = Carbon::today()->startOfDay();
@@ -43,9 +51,21 @@ class AlimentController extends Controller
       //endregion const
 
       //https://laracasts.com/discuss/channels/laravel/where-between-dates-selection
-      $expired = Aliment::all()->where('expiration_date', '<', $d1)->sortBy('expiration_date');
-      $today = Aliment::query()->whereBetween('expiration_date', $todayRange, 'and', false)->get()->sortBy('expiration_date');
-      $expiresThisWeek = Aliment::query()->whereBetween('expiration_date', $oneWeekRange, 'and', false)->get()->sortBy('expiration_date');
+      $expired = Aliment::all()
+          ->whereIn('cupboard_id', $cupboards_id)
+          ->where('expiration_date', '<', $d1)
+          ->sortBy('expiration_date');
+
+
+      $today = Aliment::query()
+          ->whereIn('cupboard_id', $cupboards_id)
+          ->whereBetween('expiration_date', $todayRange, 'and', false)
+          ->get()->sortBy('expiration_date');
+
+      $expiresThisWeek = Aliment::query()
+          ->whereIn('cupboard_id', $cupboards_id)
+          ->whereBetween('expiration_date', $oneWeekRange, 'and', false)
+          ->get()->sortBy('expiration_date');
 
       return view('welcome', compact('expired', 'today', 'expiresThisWeek'));
   }
@@ -71,6 +91,10 @@ class AlimentController extends Controller
       //TODO more required
       $this->validate($request, [
           'name' => 'required',
+          'weight' => 'required',
+          'quantity' => 'required',
+          'buy_date' => 'required',
+          'expiration_date' => 'required'
       ]);
 
       Aliment::create($request->all());

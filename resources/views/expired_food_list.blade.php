@@ -1,5 +1,11 @@
 @section('expired_food')
 
+    @if(count($expired) == 0 && count($today) == 0 && count($expiresThisWeek) == 0)
+        <h3>There's no expired or soon to be expired food to show!</h3>
+    @else
+        <h3>Here is your soon or already expired food summary!</h3>
+    @endif
+
     @if(count($expired) > 0)
         <h4>Expired</h4>
     @endif
