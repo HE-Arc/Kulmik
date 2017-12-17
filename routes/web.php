@@ -31,9 +31,9 @@ Route::resource('aliments', 'AlimentController', ['except' => ['create']])->midd
 Route::get('/category', 'CategoryController@show');
 
 //  Recipes
-//TODO 2nd iteration, use controller instead
+//TODO 2nd iteration
 Route::get('/recipes', function () {
-    return redirect('/');
+    return view('construct');
 });
 
 //  About

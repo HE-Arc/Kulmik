@@ -31,6 +31,6 @@ class GuestController extends Controller
 
       Auth::login($user);
 
-      return redirect()->route('containers.index');
+      return redirect('/');
     }
 }

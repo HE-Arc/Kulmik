@@ -16,6 +16,7 @@
                 <div class="col-sm-2">{{ $aliment->description}}</div>
             @endif
             <div class="col-sm-2">{{ \Carbon\Carbon::parse($aliment->expiration_date)->format('d/m/Y') }}</div>
+            <div class="col-sm-2">{{ $aliment->cupboard->name }}</div>
         </div>
     @endforeach
 
@@ -29,6 +30,7 @@
                 <div class="col-sm-2">{{ $aliment->description}}</div>
             @endif
             <div class="col-sm-2">{{ \Carbon\Carbon::parse($aliment->expiration_date)->format('d/m/Y') }}</div>
+            <div class="col-sm-2">{{ $aliment->cupboard->name }}</div>
         </div>
     @endforeach
 
@@ -42,6 +44,7 @@
                 <div class="col-sm-2">{{ $aliment->description}}</div>
             @endif
             <div class="col-sm-2">{{ \Carbon\Carbon::parse($aliment->expiration_date)->format('d/m/Y') }}</div>
+            <div class="col-sm-2">{{ $aliment->cupboard->name }}</div>
         </div>
     @endforeach
 

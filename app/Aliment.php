@@ -17,4 +17,9 @@ class Aliment extends Model
   {
       return $this->belongsTo('App\Category');
   }
+
+  public function cupboard()
+  {
+      return $this->belongsTo('App\Cupboard');
+  }
 }

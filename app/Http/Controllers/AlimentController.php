@@ -35,7 +35,8 @@ class AlimentController extends Controller
           $user = Auth::user()->id;
       }
 
-      $cupboards_id = Cupboard::where('user_id', $user)->pluck('id');
+      $cupboards = Cupboard::where('user_id', $user);
+      $cupboards_id = $cupboards->pluck('id');
 
       //region const
 
@@ -56,7 +57,6 @@ class AlimentController extends Controller
           ->where('expiration_date', '<', $d1)
           ->sortBy('expiration_date');
 
-
       $today = Aliment::query()
           ->whereIn('cupboard_id', $cupboards_id)
           ->whereBetween('expiration_date', $todayRange, 'and', false)
@@ -67,7 +67,7 @@ class AlimentController extends Controller
           ->whereBetween('expiration_date', $oneWeekRange, 'and', false)
           ->get()->sortBy('expiration_date');
 
-      return view('welcome', compact('expired', 'today', 'expiresThisWeek'));
+      return view('welcome', compact('expired', 'today', 'expiresThisWeek', 'cupboards'));
   }
 
 
