@@ -10,8 +10,8 @@
 
     <title>{{ config('app.name', 'Kulmik') }}</title>
 
-    <!-- Styles -->
-    @if (env('APP_ENV') != 'local')
+    <!-- Styles : leave only the secure_asset line if in production -->
+@if (env('APP_ENV') != 'local')
         <link href="{{ secure_asset('css/app.css') }}" rel="stylesheet">
     @else
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
@@ -27,7 +27,7 @@
     </div>
     @include('layouts.footer')
     
-    <!-- Scripts -->
+    <!-- Scripts : leave only the secure_asset line if in production -->
     @if (env('APP_ENV') != 'local')
         <script src="{{ secure_asset('js/app.js') }}"></script>
     @else
