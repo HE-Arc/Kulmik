@@ -86,7 +86,7 @@ class AlimentController extends Controller
 
       if( Auth::check() ){
           $user = Auth::user();
-          $cupboards = $user->cupboards();
+          $cupboards = $user->cupboards()->pluck('name', 'id');
       }
 
       return view('pages.aliments.create', compact('categories', 'cupboards', 'default'));
