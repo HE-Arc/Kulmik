@@ -26,8 +26,8 @@ class GuestController extends Controller
       $user->password = Hash::make('123456');
       $user->save();
 
-      //seed database
-      Artisan::call('db:seed');
+      //seed database : https://stackoverflow.com/questions/40987752/artisancalldbseed-not-work-in-production
+      Artisan::call('db:seed', ['--force' => true]);
 
       Auth::login($user);
 

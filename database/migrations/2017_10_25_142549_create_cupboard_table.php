@@ -15,7 +15,7 @@ class CreateCupboardTable extends Migration
     {
         Schema::create('cupboards', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name')->unique();
+            $table->string('name');
             $table->text('description');
             $table->integer('temperature');
             $table->integer('volume');
